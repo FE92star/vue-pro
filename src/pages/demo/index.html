@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" >
+    <link rel="icon" href="//r.51gjj.com/resource/banma/img/favicon.ico">
+    <title>斑马生活</title>
+  </head>
+  <script>
+     // rem
+  window.setFont=function(d,c,p){var b={},a=document,f,_w=(a.body&&a.body.clientWidth||a.getElementsByTagName("html")[0].offsetWidth),_h=window.innerHeight,obj=a.getElementsByTagName("html")[0];b.widthProportion=function(){var e=_w/d;return e};b.changePage=function(){f=b.widthProportion()*c;obj.setAttribute("style","font-size:"+f+"px !important");var style=null;if(window.getComputedStyle){style=window.getComputedStyle(obj,null);font=style.fontSize;font=Number(font.replace("px",""));if(font>f){var per=font/f;obj.setAttribute("style","font-size:"+f/per+"px !important")}}};b.changePage();addEventListener("resize",b.changePage,false);if(p){var ratio=p.h/p.w;var bl=_h/_w;if(bl<ratio-p.rate){var _pw=_h/ratio;var _Fs=parseInt(f*_pw/_w);obj.setAttribute("style","font-size:"+_Fs+"px !important")}}};window.setFont(750,100);
+  </script>
+  <body>
+    <noscript>
+      <strong>请升级您的app或其他手机尝试</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
