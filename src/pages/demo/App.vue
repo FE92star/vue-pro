@@ -6,17 +6,25 @@
 </template>
 
 <script>
-import HelloWorld from '../../components/HelloWorld.vue'
+import HelloWorld from '../../components/HelloWorld.vue';;
 
 export default {
   name: 'app',
   components: {
     HelloWorld
+  },
+  methods: {
+    getB() {
+      console.log(window.location.origin);;
+    }
+  },
+  created() {
+    this.getB()
   }
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
