@@ -35,7 +35,7 @@ export default {
     // img_icon: '',
     showIcon: false,
     type: "",
-    toJSON: '',
+    toJSON: '', //用于解决编译过程中Vue的错误提示
     isOrigin: false
   }),
   props: {
