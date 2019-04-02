@@ -1,0 +1,19 @@
+/*响应式样式写法*/
+.font(@m:14px, @ml:13px, @s:12px, @l: 16px) {
+  @media screen {
+    font-size: @m;
+    line-height: calc(@m + 8px);
+  }
+  @media (min-width: 330px) and (max-width: 369px) {
+    font-size:  @ml;
+    line-height: calc(@ml + 8px);
+  }
+  @media (max-width: 329px) {
+    font-size: @s;
+    line-height: calc(@s + 8px);
+  }
+  @media (min-width: 400px) {
+    font-size: @l;
+    line-height: calc(@l + 8px);
+  }
+}
