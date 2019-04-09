@@ -6,11 +6,16 @@
 </template>
 
 <script>
+import { numberFormat } from '@/common/js/number'
+
 export default {
   methods: {
     goPage() {
       this.$router.push('/page2')
     }
+  },
+  mounted() {
+    console.log(numberFormat().formate(68999.88, 2));
   }
 }
 </script>

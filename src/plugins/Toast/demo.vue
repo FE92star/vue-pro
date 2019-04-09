@@ -10,7 +10,8 @@ export default {
       setTimeout(() => {
         this.$toast.show({
           message: '数据请求失败',
-          position: 'top'
+          position: 'top',
+          type: 'warning'
         })
       }, 5000)
     }
