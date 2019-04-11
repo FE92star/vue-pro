@@ -1,4 +1,4 @@
-import Alert from './Tip.vue' // 引入vue模板
+import Alert from './src/toast.vue' // 引入vue模板
 var Toast = {} // 定义插件对象
 Toast.install = function(Vue, options) { // vue的install方法，用于定义vue插件
   // 如果toast还在，则不再执行

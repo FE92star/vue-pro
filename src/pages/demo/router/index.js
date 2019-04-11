@@ -41,6 +41,14 @@ const router = new VueRouter({
         title: 'page3'
       }
     },
+    {
+      path: '/demo',
+      name: 'demo',
+      component: () => import('../views/demo.vue'),
+      meta: {
+        title: 'demo'
+      }
+    }
   ]
 })
 router.beforeEach((to, from, next) => {

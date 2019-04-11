@@ -9,10 +9,10 @@
         headerTop: (position=='top' && isOrigin)
       }"
       :style="{color: color, background: background}">
-      <img v-if="showIcon && type=='success'" class="icon_style" src="./assets/success.png" alt="">
-      <img v-if="showIcon && type=='error'" class="icon_style" src="./assets/error.png" alt="">
-      <img v-if="showIcon && type=='loading'" class="icon_style" src="./assets/loading_img.gif" alt="">
-      <img v-if="showIcon && type=='wraning'" class="icon_style" src="./assets/wraning.png" alt="">
+      <img v-if="showIcon && type=='success'" class="icon_style" src="../assets/success.png" alt="">
+      <img v-if="showIcon && type=='error'" class="icon_style" src="../assets/error.png" alt="">
+      <img v-if="showIcon && type=='loading'" class="icon_style" src="../assets/loading_img.gif" alt="">
+      <img v-if="showIcon && type=='wraning'" class="icon_style" src="../assets/wraning.png" alt="">
       {{message}}
     </div>
   </transition>

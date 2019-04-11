@@ -1,4 +1,4 @@
-import PopBox from './popBox.vue' //引入vue模板
+import PopBox from './src/popBox.vue' //引入vue模板
 var popBox = {} //定义插件对象
 popBox.install = function(Vue, options) { //Vue的公开方法install，用于定义插件，第一个参数是 Vue 构造器，第二个参数是一个可选的选项对象
   // 如果该插件对象存在，则不再执行

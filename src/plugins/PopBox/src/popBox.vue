@@ -8,13 +8,13 @@
         <div class="alert_top">
           <p>{{title}}</p>
           <div class="icon_close" @click.prevent="toggleFn">
-            <img src="./assets/close.png" alt="">
+            <img src="../assets/close.png" alt="">
           </div>
         </div>
         <div class="alert_bot">
           <div class="logo_left">
             <slot name="logo">
-              <img src="./assets/logo2.png" alt="">
+              <img src="../assets/logo2.png" alt="">
             </slot>
           </div>
           <ul class="text_right">
@@ -56,7 +56,7 @@ export default {
 
 <style lang="less" scoped>
 /* CSS引入需要绝对路径 */
-@import url('../../common/css/transition.less');
+// @import url('../../../common/css/transition.less');
 .widthDis {
   width: 100%;
   display: block;
@@ -140,5 +140,23 @@ export default {
   .alert_bot .logo_left {
     left: 15px;
   }
+}
+/*淡入淡出*/
+.fade-enter-active {
+  transition: all .2s linear;
+}
+.fade-leave-active {
+  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+/*slide-toggle*/
+.slide-enter-active, .slide-leave-active {
+  transition: all 0.3s linear;
+}
+.slide-enter, .slide-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
 }
 </style>
