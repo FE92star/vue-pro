@@ -43,10 +43,19 @@ export default {
           type: 'warning'
         })
       }, 5000)
+    },
+    ajaxFn() {
+      this.$ajax({
+        url: 'http://test.jianbing.com/invest2/account/queryAccount/accountInfo',
+        type: "POST",
+        success: (r) => {
+          console.log(r);
+        }
+      })
     }
   },
   mounted() {
-
+    this.ajaxFn()
   },
   created() {
 

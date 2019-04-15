@@ -10,6 +10,8 @@ import WaveNumber from '@/components/WaveNumber/index.js'
 import Dialog from '@/plugins/Dialog/index.js'
 import PopBox from '@/plugins/PopBox/index.js'
 import Toast from '@/plugins/Toast/index.js'
+import Ajax from '@/plugins/Ajax/index.js'
+import Nav from '@/plugins/NavRouter/index.js'
 
 const components = [
   Calendar,
@@ -29,6 +31,8 @@ const install = function(Vue) {
   Vue.use(Dialog)
   Vue.use(PopBox)
   Vue.use(Toast)
+  Vue.use(Ajax)
+  Vue.use(Nav)
 }
 
 if(typeof window !== 'undefined' && window.Vue) {
@@ -42,5 +46,7 @@ export default {
   WaveNumber,
   Dialog,
   PopBox,
-  Toast
+  Toast,
+  Ajax,
+  Nav
 }

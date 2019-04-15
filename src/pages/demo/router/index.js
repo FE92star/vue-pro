@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   // 工程的基础路径
-  base: '/51lc/myapp',
+  base: '/h5/demo',
   routes: [
     {
       path: '*',

@@ -49,7 +49,7 @@ export default {
       this.backFn()
     }, 100)
     setTimeout(()=> {
-      let t = window.location.href.replace(/.*51lc\/myapp/g, '')
+      let t = window.location.href.replace(/.*h5\/demo/g, '')
       window.sessionStorage.setItem('HISTORY_INIT', t)
     }, 500)
   },
