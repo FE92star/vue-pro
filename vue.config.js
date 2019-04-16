@@ -64,6 +64,17 @@ function templateHtml() {
   let t = templateHtml()
 })()
 
+const domain = {
+  kaifa: 'dev-nginx',
+  test: 'uat-nginx',
+  b: 'b'
+}[process.env.domain || 'kaifa'];
+const domain2 = {
+  kaifa: 'kaifa',
+  test: 'test',
+  b: 'b'
+}[process.env.domain || 'kaifa'];
+
 module.exports = {
   publicPath: decoratorFn(process.env.pro).header !== 'none' ? (process.env.NODE_ENV === 'production' ? 'https://r.51gjj.com/webpublic/' : '/') : '',
   pages: {
@@ -103,6 +114,26 @@ module.exports = {
   chainWebpack: config => {
     if(process.env.NODE_ENV === 'production') {
       config.plugins.delete('prefetch')
+    }
+  },
+  devServer: {
+    port: 8080,
+    host: '127.0.0.1',
+    overlay: {
+      warnings: false,
+      errors: false
+    },
+    https: false,
+    proxy: { //配置代理
+      '/51app/': {
+        changeOrigin: true,
+        target: `https://${domain}.jianbing.com`,
+        // target: `https://uat-nginx.jianbing.com`,
+      },
+      '/app/': {
+        changeOrigin: true,
+        target: `https://${domain2}.jianbing.com`,
+      },
     }
   }
 }
