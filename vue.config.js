@@ -124,7 +124,7 @@ module.exports = {
       errors: false
     },
     https: false,
-    proxy: { //配置代理，适用于前端项目和接口服务不是在同一台服务器上面
+    proxy: { //配置接口代理，适用于前端项目和接口服务部署在两台不同的服务器上面
       '/51app/': {
         changeOrigin: true,
         target: `https://${domain}.jianbing.com`,

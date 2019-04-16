@@ -12,6 +12,7 @@ import PopBox from '@/plugins/PopBox/index.js'
 import Toast from '@/plugins/Toast/index.js'
 import Ajax from '@/plugins/Ajax/index.js'
 import Nav from '@/plugins/NavRouter/index.js'
+import VReg from '@/directives/VReg/index.js'
 
 const components = [
   Calendar,
@@ -33,6 +34,8 @@ const install = function(Vue) {
   Vue.use(Toast)
   Vue.use(Ajax)
   Vue.use(Nav)
+  // 指令注册
+  VReg(Vue)
 }
 
 if(typeof window !== 'undefined' && window.Vue) {
@@ -48,5 +51,6 @@ export default {
   PopBox,
   Toast,
   Ajax,
-  Nav
+  Nav,
+  VReg
 }
