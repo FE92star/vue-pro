@@ -21,6 +21,7 @@
     "@vue/cli-service": "^3.5.0",
     "ali-oss": "^6.1.0",
     "babel-eslint": "^10.0.1",
+    "clean-webpack-plugin": "^2.0.1",
     "co": "^4.6.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
