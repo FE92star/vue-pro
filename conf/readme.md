@@ -15,7 +15,7 @@ npm install
 #### 启动项目
 window
 ```js
-set pro=xx // 设置项目 如果是多层路径写路径   如set pro=web/credit 表示pages/web/credit 下的项目
+set pro=xx || set pro=xx/yy // 设置项目 如果是多层路径写路径   如set pro=web/credit 表示pages/web/credit 下的项目
 npm run serve // 或者 npm run dev
 ```
 
@@ -54,7 +54,7 @@ set pro=@dist[ddm]
 <font color=#d43f33>【mult】</font>
 ```js
 set pro=@mult xx[a,b,c]
-set pro=@mult-active[20180101, 20180102,20180103] 
+set pro=@mult-active[20180101, 20180102,20180103]
 // => active/20180101, active/20180102, active/20180103
 打包多页面，要求模式固定，生成对应html  公共js css 等
 一般用于活动、多页面项目

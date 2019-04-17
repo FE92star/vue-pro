@@ -1,5 +1,5 @@
 <template lang="html">
-  <page-wrap :state="pageState">
+  <page-wrap :state="pageState" @scroll="pageFn">
     <p style="margin-bottom: 500px;">666</p>
     <p style="margin-bottom: 500px;">666</p>
     <p style="margin-bottom: 500px;">666</p>
@@ -20,9 +20,12 @@ export default {
         console.log(6666);
       }, 1000))
     },
+    pageFn(top) {
+      console.log(top);
+    }
   },
   mounted() {
-    this.scrollFn()
+    // this.scrollFn()
     setTimeout(() => {
       this.pageState = 'success'
     }, 500)
