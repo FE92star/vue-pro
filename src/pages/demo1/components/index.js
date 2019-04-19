@@ -4,6 +4,7 @@ import Calendar from '@/components/Calendar/index.js'
 import ProgressBar from '@/components/ProgressBar/index.js'
 import WaveNumber from '@/components/WaveNumber/index.js'
 import PageWrap from '@/components/PageWrap/index.js'
+import Throttle from '@/components/Throttle/index.js'
 
 import Dialog from '@/plugins/Dialog/index.js'
 import PopBox from '@/plugins/PopBox/index.js'
@@ -16,7 +17,8 @@ const components = [
   Calendar,
   ProgressBar,
   WaveNumber,
-  PageWrap
+  PageWrap,
+  Throttle
 ]
 
 /**
@@ -47,6 +49,7 @@ export default {
   ProgressBar,
   WaveNumber,
   PageWrap,
+  Throttle,
   Dialog,
   PopBox,
   Toast,
