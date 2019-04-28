@@ -32,3 +32,18 @@ export const getUrlData = (href) => {
   }
   return obj;
 }
+
+/*
+* 原生实现一个new操作符
+*/
+export const New = (func) => {
+  var res = {} //构建一个新对象
+  if(func.prototype !== null) {
+    res.__proto__ = func.prototype //原型链继承
+  }
+  var ret = func.apply(res, Array.prototype.slice.call(arguments, 1)) //改变this指向
+  if((typeof(ret) === "object" || typeof(ret) === "function") && ret !== null) { //如果是对象或function类型，即返回该对象
+    return ret
+  }
+  return res
+}
