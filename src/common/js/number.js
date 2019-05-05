@@ -43,7 +43,7 @@ export function numberFormat() {
       let x1 = x[0];
       const x2 = x.length > 1 ? decimal + x[1] : '';
       const rgx = /(\d+)(\d{3})/;
-      if(separator && !isNumber(separator)) {
+      if(separator && !this.isNumber(separator)) {
         while (x1.match(rgx)) {
           x1 = x1.replace(rgx, '$1' + separator + '$2');
         }
