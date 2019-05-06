@@ -58,7 +58,53 @@ export default {
     this.ajaxFn()
   },
   created() {
+    const makePromise = (value) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(value)
+        }, Math.random() * 1000)
+      })
+    }
+    const print = (value) => {
+      return value
+    }
+    let promises = [1,2,3,4,5].map((item, index) => {
+      return makePromise(item)
+    })
+    // promise的并行
+    Promise.all(promises)
+    .then(() => {
+      console.log('done');
+    })
+    .catch(() => {
+      console.log('err');
+    })
+    // promise的串行
+    // const runPromiseByQueue = (myPromises) => {
+    //   myPromises.reduce((previousPromise, nextPromise) => previousPromise.then(() => nextPromise()), Promise.resolve())
+    // }
+    const runPromiseByQueue = async (myPromises) => {
+      for(let value of myPromises) {
+        await value()
+      }
+    }
+    const createPromise = (time, id) => () =>
+      new Promise(solve =>
+        setTimeout(() => {
+          console.log("promise", id);
+          solve();
+        }, time)
+      );
 
+    runPromiseByQueue([
+      createPromise(3000, 1),
+      createPromise(2000, 2),
+      createPromise(1000, 3)
+    ]);
+    // let arr = [1,2,3,4,5].reduce((total, value) => {
+    //   return total + value
+    // }, 6)
+    // console.log(arr);
   }
 }
 </script>
