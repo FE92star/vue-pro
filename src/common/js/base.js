@@ -47,3 +47,31 @@ export const New = (func) => {
   }
   return res
 }
+
+/*实现简单发布订阅者模式*/
+export const Publish = () => {
+  class PubSub {
+    constructor() {
+      this.list = {}
+    }
+    subscribe(key, fn) { //订阅
+      if(!this.list[key]) {
+        this.list[key] = []
+      }
+      this.list[key].push(fn)
+    }
+    publish() { //发布
+      let arg = arguments
+      let key = [].shift.call(arg)
+      let fns = this.list[key]
+      if(!fns || fns.length <= 0) return false
+      for(let i=0, len=fns.length; i<len; i++) {
+        fns[i].apply(this, arg)
+      }
+    }
+    unSubscribe(key) {
+      delete this.list[key]
+    }
+  }
+  return new PubSub
+}

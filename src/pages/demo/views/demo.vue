@@ -3,8 +3,8 @@
     <button type="button" name="button" @click="showFn">dilog</button>
     <button type="button" name="button" @click="popFn" class="color1">pop</button>
     <button type="button" name="button" @click="toastFn" class="color2">Toast</button>
-    <div class="parent">
-      <div class="child">
+    <div class="parent" ref="parent">
+      <div class="child" ref="child">
 
       </div>
     </div>
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { Publish } from '@/common/js/base'
+
 export default {
   data: () => ({
     value: null
@@ -61,11 +63,26 @@ export default {
           console.log(this.value);
         }
       })
+    },
+    domFn() {
+      let [parentDOM, childDOM] = [this.$refs.parent, this.$refs.child]
+      parentDOM.addEventListener('click', function() {
+        console.log('parent');
+      }, false) //捕获
+      childDOM.addEventListener('click', function() {
+        console.log('child');
+      }, false) //默认冒泡
+      // 事件流——先捕获，处于目标，再冒泡
     }
   },
   mounted() {
     // this.ajaxFn()
     let _this = this
+    _this.domFn()
+    Publish().subscribe('name', (name) => {
+      console.log(`${name} is 666`);
+    })
+    Publish().publish('name', 'Bob')
     // async function asyncFn() {
     //   await _this.ajaxFn()
     //   return _this.value
