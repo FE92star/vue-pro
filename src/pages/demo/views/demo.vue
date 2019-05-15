@@ -73,12 +73,22 @@ export default {
         console.log('child');
       }, false) //默认冒泡
       // 事件流——先捕获，处于目标，再冒泡
+    },
+    forFn() {
+      for(var i=0; i<10; i++) { //闭包设置独立的执行环境
+        (function(j) {
+          setTimeout(() => {
+            console.log(j);
+          }, j*100)
+        })(i)
+      }
     }
   },
   mounted() {
     // this.ajaxFn()
     let _this = this
     _this.domFn()
+    _this.forFn()
     Publish().subscribe('name', (name) => {
       console.log(`${name} is 666`);
     })
