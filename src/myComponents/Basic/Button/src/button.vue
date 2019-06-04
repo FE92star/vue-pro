@@ -93,7 +93,7 @@ export default {
 		}
 	},
 	methods: {
-		addCssStyle() {
+		addCssStyle() { // 给朴素按钮添加点击状态
 			let bgColor = {}
 			let type = this.type
 			this.typeLists.forEach((type, index) => {
