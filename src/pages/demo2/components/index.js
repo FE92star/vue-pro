@@ -1,7 +1,11 @@
 import BaoButton from '@/myComponents/Basic/Button/index'
+import BaoRadio from '@/myComponents/Form/Radio/index'
+import BaoProgress from '@/myComponents/DataShow/Progress/index'
 
 const components = [
-	BaoButton
+	BaoButton,
+	BaoRadio,
+	BaoProgress
 ]
 
 // 全局注册组件
@@ -16,5 +20,6 @@ if(typeof window !== 'undefined' && window.Vue) {
 
 export default {
 	install,
-	BaoButton
+	BaoButton,
+	BaoRadio
 }

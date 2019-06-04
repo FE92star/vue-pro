@@ -3,8 +3,8 @@
 		<button
 			type="button"
 			name="button"
-			:class="buttonClass"
-			:style="buttonSize"
+			:class='buttonClass'
+			:style='buttonSize'
 			ref="button"
 			>
 			<!-- 加载中的状态 -->
