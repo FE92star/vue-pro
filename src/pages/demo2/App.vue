@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="">
-    <bao-button type="success" circle></bao-button>
+    <bao-button type="primary" loading>
+      加载中
+    </bao-button>
   </div>
 </template>
 
@@ -14,5 +16,9 @@ export default {
 * {
   margin: 0;
   padding: 0;
+}
+.iconfont {
+	font-size: 14px;
+	color: #fff;
 }
 </style>

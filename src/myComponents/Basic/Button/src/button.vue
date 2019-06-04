@@ -4,19 +4,22 @@
 			type="button"
 			name="button"
 			:class="buttonClass"
+			:style="buttonSize"
+			ref="button"
 			>
+			<!-- 加载中的状态 -->
+			<i class="iconfont iconloading" v-if="loading"></i>
 			<slot>
-				<img src="../icons/check.png" alt="" v-if="iconType == 'check'">
-				<img src="../icons/delete.png" alt="" v-else-if="iconType == 'delete'">
-				<img src="../icons/edit.png" alt="" v-else-if="iconType == 'edit'">
-				<img src="../icons/message.png" alt="" v-else-if="iconType == 'message'">
-				<img src="../icons/star.png" alt="" v-else-if="iconType == 'star'">
+				<!-- 利用icon font来减小静态资源的体积 -->
+				<i class="iconfont" :class="`icon${iconType}`"></i>
 			</slot>
 		</button>
 	</div>
 </template>
 
 <script>
+import { addClass } from '@/common/js/dom.js'
+
 export default {
 	name: 'bao-button',
 	data: () => ({
@@ -40,37 +43,88 @@ export default {
 			type: Boolean,
 			default: false
 		},
-		iconType: { // icon类型
+		iconType: { // icon类型['search','check','edit','edit','message','star']
 			type: String,
-			default: 'edit'
+			default: ''
+		},
+		disable: { // 是否禁用按钮
+			type: Boolean,
+			default: false
+		},
+		loading: { // 是否处于加载状态
+			type: Boolean,
+			default: false
+		},
+		size: { // 按钮尺寸类型['medium', 'small', 'mini']-中,小,迷你
+			type: String,
+			default: ''
 		}
 	},
 	computed: {
 		buttonClass() {
-			if(this.simple) {
-				return `bao_isSimple_${this.type}`
-			}else if(this.round) {
-				return [`bao_${this.type}`, `bao_isRound`]
-			}else if(this.circle) {
-				return [`bao_${this.type}`, `bao_isCircle`]
-			}else {
-				return `bao_${this.type}`
+			if(this.type) {
+				if(this.simple) {
+					return `bao_isSimple_${this.type}`
+				}else if(this.round) {
+					return [`bao_${this.type}`, `bao_isRound`]
+				}else if(this.circle) {
+					return [`bao_${this.type}`, `bao_isCircle`]
+				}else {
+					return `bao_${this.type}`
+				}
+			}else { //原始类型
+				return ''
 			}
+		},
+		buttonSize() {
+			let styleStr = ''
+			switch (this.size) {
+				case 'medium':
+					styleStr = `padding: 10px 20px;`
+					break;
+				case 'small':
+					styleStr = `padding: 9px 15px;font-size: 12px;border-radius: 3px;`
+					break;
+				case 'mini':
+					styleStr = `padding: 7px 15px;font-size: 12px;border-radius: 3px;`
+					break;
+			}
+			return styleStr
 		}
 	},
 	methods: {
-
+		addCssStyle() {
+			let bgColor = {}
+			let type = this.type
+			this.typeLists.forEach((type, index) => {
+				bgColor[type] = this.bgLists[index]
+			})
+			let cssStyle = `.bao_isSimple_${this.type}:active {background: ${bgColor[type]} !important; color: #fff;}`
+			let head = document.head || document.getElementsByTagName('head')[0]
+			let styleDom = document.createElement('style')
+			styleDom.type = 'text/css'
+			if(styleDom.styleSheet) {
+				styleDom.styleSheet.cssText = cssStyle
+			}else {
+				styleDom.appendChild(document.createTextNode(cssStyle))
+			}
+			head.appendChild(styleDom)
+		}
 	},
 	created() {
 
 	},
 	mounted() {
 		this.$nextTick(() => {
-			let bgColor = {}
-			this.typeLists.forEach((type, index) => {
-				bgColor[type] = this.bgLists[index]
-			})
-			document.styleSheets[0].addRule(`.bao_isSimple_${this.type}:before`, `background: ${bgColor.type} !important`)
+			if(this.simple) { // 朴素按钮
+				this.addCssStyle()
+			}
+			if(this.disable) {
+				this.$refs.button.setAttribute("disable", true)
+				addClass(this.$refs.button, 'bao_disabled')
+			}
+			// 最新版的Chrome对addRule做了限制，不能直接添加样式表
+			// document.styleSheets[0].addRule(`.bao_isSimple_${this.type}:before`, `background: ${bgColor.type} !important`)
 		})
 	}
 }
@@ -96,6 +150,7 @@ button {
 	white-space: nowrap;
 	background: #fff;
 	text-align: center;
+	cursor: pointer;
 	/* 移除原生控件的默认展示样式 */
 	-webkit-appearance: none;
 	font-weight: 500;
@@ -103,9 +158,6 @@ button {
 	&:active {
 		opacity: .86;
 	}
-}
-button[class^="bao_isSimple_"] {
-
 }
 .bao_primary {
 	.buttonStyle(#fff, #409eff, #409eff);
@@ -124,38 +176,18 @@ button[class^="bao_isSimple_"] {
 }
 .bao_isSimple_primary {
 	.buttonStyle(#409eff, #ecf5ff, #b3d8ff);
-	&:active {
-		background: #409eff;
-		color: #fff;
-	}
 }
 .bao_isSimple_success {
 	.buttonStyle(#67c23a, #f0f9eb, #c2e7b0);
-	&:active {
-		background: #67c23a;
-		color: #fff;
-	}
 }
 .bao_isSimple_info {
 	.buttonStyle(#909399, #f4f4f5, #d3d4d6);
-	&:active {
-		background: #909399;
-		color: #fff;
-	}
 }
 .bao_isSimple_warning {
 	.buttonStyle(#e6a23c, #fdf6ec, #f5dab1);
-	&:active {
-		background: #e6a23c;
-		color: #fff;
-	}
 }
 .bao_isSimple_danger {
 	.buttonStyle(#f56c6c, #fef0f0, #fbc4c4);
-	&:active {
-		background: #f56c6c;
-		color: #fff;
-	}
 }
 .bao_isRound {
 	border-radius: 20px;
@@ -168,10 +200,27 @@ button[class^="bao_isSimple_"] {
 					display: flex;
 	justify-content: center;
 	align-items: center;
-	img {
-		width: 14px;
-		height: 13px;
-		// display: block;
+}
+.bao_disabled {
+	cursor: not-allowed;
+	background-image: none;
+	filter: opacity(.68);
+}
+.iconfont {
+	font-size: 14px;
+	color: #fff;
+}
+.iconloading {
+	display: inline-block; // rotate不适用于行内元素
+	animation: loadAnimate 2s linear infinite;
+}
+
+@keyframes loadAnimate {
+	0% {
+		transform: rotateZ(0);
+	}
+	to {
+		transform: rotateZ(1turn);
 	}
 }
 </style>
