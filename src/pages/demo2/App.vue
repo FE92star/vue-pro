@@ -13,7 +13,7 @@
       <bao-progress :percentage="100" :animationState="true" background='#4679E7'></bao-progress>
     </div>
     <img src="../../assets/loading.gif" alt="">
-    <bao-checkbox v-model="bool" shape="circle">选项djajdjajdja</bao-checkbox>
+    <bao-checkbox v-model="bool" shape="circle" disable>选项djajdjajdja</bao-checkbox>
   </div>
 </template>
 

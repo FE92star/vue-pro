@@ -95,6 +95,9 @@ export default {
   height: 20px;
   top: 0px;
   cursor: pointer;
+  &:active {
+    background: transparent;
+  }
 }
 .radio_check > label:before {
   content: '';

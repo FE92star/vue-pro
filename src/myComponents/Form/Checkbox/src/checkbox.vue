@@ -8,14 +8,14 @@
       v-model="model"
       @click="handeleChange"
     >
-    <label :for="`id${checkID}`">
+    <label :for="`id${checkID}`" ref="label">
       <slot></slot>
     </label>
   </div>
 </template>
 
 <script>
-import { addCssStyle } from '@/common/js/dom.js'
+import { addClass, addCssStyle } from '@/common/js/dom.js'
 
 export default {
   name: 'bao-checkbox',
@@ -27,6 +27,10 @@ export default {
     shape: { // 复选框的形状['circle', 'square']-圆形和方形两种
       type: String,
       default: 'circle'
+    },
+    disable: { // 是否禁用该复选框
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -54,6 +58,12 @@ export default {
       if(this.shape === 'square') {
         addCssStyle(cssStyle)
       }
+      if(this.disable) {
+        let checkDom = this.$refs.checkbox
+        let labelDom = this.$refs.label
+        checkDom.setAttribute('disabled', true)
+        addClass(labelDom, 'check_disabled')
+      }
     })
   }
 }
@@ -78,6 +88,7 @@ export default {
   top: 0;
   height: 20px;
   line-height: 20px;
+  cursor: pointer;
 }
 .form-check__box label:before {
   content: '';
@@ -121,5 +132,10 @@ export default {
 }
 .form-check__box input[type='checkbox']:checked + label:after {
   background: #409eff;
+}
+.check_disabled {
+  cursor: not-allowed !important;
+	background-image: none !important;
+	filter: opacity(.58) !important;
 }
 </style>
