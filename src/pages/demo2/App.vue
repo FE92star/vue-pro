@@ -3,7 +3,7 @@
     <bao-button type="primary" loading>
       加载中
     </bao-button>
-    <bao-radio label="1" v-model="radio" @input="check">选项1</bao-radio>
+    <bao-radio label="1" v-model="radio" @input="check">选项11111</bao-radio>
     <bao-radio label="2" v-model="radio" @change="change">选项2</bao-radio>
     <div class="progress">
       <bao-progress :percentage='50' type="circle" background='#4679E7' textColor='#4678e7' circleText='立即投资' strokeWidth="80" strokeHeight="80" circleWidth="35"></bao-progress>

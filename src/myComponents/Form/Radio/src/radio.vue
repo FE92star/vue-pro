@@ -19,7 +19,7 @@
 export default {
   name: 'bao-radio',
   data: () => ({
-
+    slotTexts: ''
   }),
   props: {
     label: {
@@ -32,13 +32,13 @@ export default {
     radioWidth() { // 计算radio元素宽带
       let cnNum = 0
       let regExp = /[\u4e00-\u9fa5]/ // 匹配中文
-      let arr = this.label.split('')
+      let arr = this.slotTexts.split('')
       for(let i=0; i<arr.length; i++) {
         if(arr[i].match(regExp)) {
           cnNum ++
         }
       }
-      let len = this.label.length
+      let len = this.slotTexts.length
       let width = 30 + 16 * cnNum + 10 * (len - cnNum)
       return `${width}px`
     },
@@ -63,7 +63,9 @@ export default {
 
   },
   mounted() {
-
+    this.$nextTick(() => { // 获取slot分发的内容
+      this.slotTexts = this.$slots.default[0].text
+    })
   }
 }
 </script>
@@ -71,7 +73,7 @@ export default {
 <style lang="less" scoped>
 .radio_check {
   position: relative;
-  padding-right: 24px;
+  padding-right: 12px;
   min-width: 62px;
   height: 35px;
   display: inline-block;
