@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { addClass } from '@/common/js/dom.js'
+import { addClass, addCssStyle } from '@/common/js/dom.js'
 
 export default {
 	name: 'bao-button',
@@ -93,22 +93,14 @@ export default {
 		}
 	},
 	methods: {
-		addCssStyle() { // 给朴素按钮添加点击状态
+		addStyle() { // 给朴素按钮添加点击状态
 			let bgColor = {}
 			let type = this.type
 			this.typeLists.forEach((type, index) => {
 				bgColor[type] = this.bgLists[index]
 			})
 			let cssStyle = `.bao_isSimple_${this.type}:active {background: ${bgColor[type]} !important; color: #fff;}`
-			let head = document.head || document.getElementsByTagName('head')[0]
-			let styleDom = document.createElement('style')
-			styleDom.type = 'text/css'
-			if(styleDom.styleSheet) {
-				styleDom.styleSheet.cssText = cssStyle
-			}else {
-				styleDom.appendChild(document.createTextNode(cssStyle))
-			}
-			head.appendChild(styleDom)
+			addCssStyle(cssStyle)
 		}
 	},
 	created() {
@@ -117,7 +109,7 @@ export default {
 	mounted() {
 		this.$nextTick(() => {
 			if(this.simple) { // 朴素按钮
-				this.addCssStyle()
+				this.addStyle()
 			}
 			if(this.disable) {
 				this.$refs.button.setAttribute("disable", true)

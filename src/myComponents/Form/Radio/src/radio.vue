@@ -94,6 +94,7 @@ export default {
   line-height: 20px;
   height: 20px;
   top: 0px;
+  cursor: pointer;
 }
 .radio_check > label:before {
   content: '';

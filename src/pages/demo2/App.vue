@@ -3,7 +3,7 @@
     <bao-button type="primary" loading>
       加载中
     </bao-button>
-    <bao-radio label="1" v-model="radio" @input="check">选项11111</bao-radio>
+    <bao-radio label="1" v-model="radio" @input="check">选项1</bao-radio>
     <bao-radio label="2" v-model="radio" @change="change">选项2</bao-radio>
     <div class="progress">
       <bao-progress :percentage='50' type="circle" background='#4679E7' textColor='#4678e7' circleText='立即投资' strokeWidth="80" strokeHeight="80" circleWidth="35"></bao-progress>
@@ -13,13 +13,15 @@
       <bao-progress :percentage="100" :animationState="true" background='#4679E7'></bao-progress>
     </div>
     <img src="../../assets/loading.gif" alt="">
+    <bao-checkbox v-model="bool" shape="circle">选项djajdjajdja</bao-checkbox>
   </div>
 </template>
 
 <script>
 export default {
   data: () => ({
-    radio: '1'
+    radio: '1',
+    bool: false
   }),
   methods: {
     check(val) {

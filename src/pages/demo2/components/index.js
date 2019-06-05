@@ -1,10 +1,12 @@
 import BaoButton from '@/myComponents/Basic/Button/index'
 import BaoRadio from '@/myComponents/Form/Radio/index'
+import BaoCheckbox from '@/myComponents/Form/Checkbox/index'
 import BaoProgress from '@/myComponents/DataShow/Progress/index'
 
 const components = [
 	BaoButton,
 	BaoRadio,
+	BaoCheckbox,
 	BaoProgress
 ]
 
@@ -21,5 +23,7 @@ if(typeof window !== 'undefined' && window.Vue) {
 export default {
 	install,
 	BaoButton,
-	BaoRadio
+	BaoRadio,
+	BaoCheckbox,
+	BaoProgress
 }
