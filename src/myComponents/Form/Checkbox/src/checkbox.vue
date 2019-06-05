@@ -23,7 +23,7 @@ export default {
     checkID: 'checkbox'
   }),
   props: {
-    value: {},
+    value: {}, // value属性值就是父组件中v-model的值
     shape: { // 复选框的形状['circle', 'square']-圆形和方形两种
       type: String,
       default: 'circle'
