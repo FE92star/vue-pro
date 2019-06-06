@@ -14,7 +14,7 @@
     </div>
     <img src="../../assets/loading.gif" alt="">
     <bao-checkbox v-model="bool" shape="circle" disable>选项djajdjajdja</bao-checkbox>
-    <bao-upload @multChange="multFn"></bao-upload>
+    <bao-upload @multChange="multFn" :userLimit="['png']"></bao-upload>
     <input type="file" name="" value="">
   </div>
 </template>

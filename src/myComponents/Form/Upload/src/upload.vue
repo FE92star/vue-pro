@@ -15,7 +15,7 @@
         value=""
         id="file"
         :multiple="multiple"
-        :accept="imgTypeLimit"
+        :accept="systemTypeLimit"
       >
     </div>
   </div>
@@ -35,7 +35,7 @@ export default {
       type: Boolean,
       default: false
     },
-    imgTypeLimit: { // 系统默认筛选对应类型文件供选择
+    systemTypeLimit: { // 系统默认筛选对应类型文件供选择
       // 上传文件的类型限制'image/*-表示接受任何图片类型,
       // '.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'——接受任何 MS Doc 文件类型.
       type: String,
@@ -44,14 +44,21 @@ export default {
     sizeLimit: {
       type: Number,
       default: 2
+    },
+    userLimit: { // 用户限制上传图片格式
+      type: Array,
+      default: () => {
+        return ['png', 'jpg', 'jpeg', 'gif']
+      }
     }
   },
   methods: {
     fileRead() {
       let _this = this
+      let status = false
       let inputDom = document.getElementById('file')
       inputDom.addEventListener('change', function() {
-        if(inputDom.files.length == 1) { // 只允许单个文件上传
+        if(inputDom.files.length == 1) { // 允许单个文件上传
           let singleFile = inputDom.files[0]
           if(singleFile.size > 1024 * 1024 * _this.sizeLimit) { // 限制上传文件大小
             console.log(`单个文件大小不能超出${_this.sizeLimit}M，请重新选择`);
@@ -60,14 +67,13 @@ export default {
           let reader = new FileReader()
           reader.readAsDataURL(singleFile) // 异步读取
           reader.onloadstart = function(e) { // 开始上传
-            if(singleFile.type.match(/\/jpeg$/)) {
-              console.log('非png');
-            }else {
-              console.log('done');
-            }
+            status =  _this.userLimit.some((item) => {
+              let exp = new RegExp(item, 'g')
+              return singleFile.type.match(exp)
+            })
           }
           reader.onprogress = function(e) { // 上传过程中
-            console.log(e.loaded);
+            // console.log(e.loaded);
           }
           reader.onload = function() { // 上传成功
             // console.log(this.result)
@@ -76,11 +82,15 @@ export default {
             console.log('文件上传错误，请重新上传');
           }
           reader.onloadend = function() {
-            _this.uploadSrc = this.result
-            _this.uploadState = true
-            _this.$emit('change', this.result)
+            if(status) {
+              _this.uploadSrc = this.result
+              _this.uploadState = true
+              _this.$emit('change', this.result)
+            }else {
+              console.log('非指定类型文件');
+            }
           }
-        }else {
+        }else { // 多文件上传
           _this.filesList = inputDom.files
           _this.$emit('multChange', _this.filesList)
         }
