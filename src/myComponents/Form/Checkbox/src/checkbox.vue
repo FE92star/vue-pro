@@ -7,6 +7,7 @@
       :id="`id${checkID}`"
       v-model="model"
       @click="handeleChange"
+      :disabled="disable"
     >
     <label :for="`id${checkID}`" ref="label">
       <slot></slot>
@@ -59,9 +60,7 @@ export default {
         addCssStyle(cssStyle)
       }
       if(this.disable) {
-        let checkDom = this.$refs.checkbox
         let labelDom = this.$refs.label
-        checkDom.setAttribute('disabled', true)
         addClass(labelDom, 'check_disabled')
       }
     })

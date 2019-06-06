@@ -14,6 +14,7 @@
     </div>
     <img src="../../assets/loading.gif" alt="">
     <bao-checkbox v-model="bool" shape="circle" disable>选项djajdjajdja</bao-checkbox>
+    <bao-upload></bao-upload>
   </div>
 </template>
 
