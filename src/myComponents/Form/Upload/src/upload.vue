@@ -72,6 +72,9 @@ export default {
           reader.onload = function() { // 上传成功
             // console.log(this.result)
           }
+          reader.onerror = function() {
+            console.log('文件上传错误，请重新上传');
+          }
           reader.onloadend = function() {
             _this.uploadSrc = this.result
             _this.uploadState = true
