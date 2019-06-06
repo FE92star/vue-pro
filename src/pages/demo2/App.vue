@@ -10,11 +10,12 @@
     </div>
     <!-- 条形进度条 -->
     <div class="line">
-      <bao-progress :percentage="100" :animationState="true" background='#4679E7'></bao-progress>
+      <bao-progress :percentage="100" animationState background='#4679E7'></bao-progress>
     </div>
     <img src="../../assets/loading.gif" alt="">
     <bao-checkbox v-model="bool" shape="circle" disable>选项djajdjajdja</bao-checkbox>
-    <bao-upload></bao-upload>
+    <bao-upload @multChange="multFn"></bao-upload>
+    <input type="file" name="" value="">
   </div>
 </template>
 
@@ -30,6 +31,9 @@ export default {
     },
     change(val) {
       console.log(val, this.radio);
+    },
+    multFn(files) {
+      console.log(files);
     }
   }
 }
