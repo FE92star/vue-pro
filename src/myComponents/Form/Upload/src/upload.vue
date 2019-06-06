@@ -50,6 +50,10 @@ export default {
       default: () => {
         return ['png', 'jpg', 'jpeg', 'gif']
       }
+    },
+    drag: { // 是否支持拖拽功能，file类型默认支持拖拽
+      type: Boolean,
+      default: true
     }
   },
   methods: {
@@ -102,8 +106,18 @@ export default {
     }
   },
   mounted() {
+    let _this = this
     this.$nextTick(() => {
       this.fileRead()
+      if(!_this.drag) { // 撤销默认支持拖拽事件
+        this.$refs.file.addEventListener('drop', function(event) {
+          event.preventDefault() // 取消默认可拖拽事件
+          if(event.type == 'drop') {
+            _this.uploadSrc = event.dataTransfer.files
+            _this.$emit('unDrag', _this.uploadSrc)
+          }
+        })
+      }
     })
   }
 }

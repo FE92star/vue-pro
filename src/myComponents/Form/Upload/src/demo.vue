@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <bao-upload @multChange="multFn" @change="changeFn" :userLimit="['png']"></bao-upload>
+    <bao-upload @multChange="multFn" @change="changeFn" :userLimit="['png']" drag multiple @unDrag="dragFn"></bao-upload>
   </div>
 </template>
 
@@ -14,6 +14,9 @@ export default {
     },
     changeFn(val) {
       console.log(val);
+    },
+    dragFn(files) {
+      console.log(files);
     }
   }
 }
