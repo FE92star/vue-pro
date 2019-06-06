@@ -54,6 +54,10 @@ export default {
     drag: { // 是否支持拖拽功能，file类型默认支持拖拽
       type: Boolean,
       default: true
+    },
+    action: { // 从本地上传到服务器的php地址——一般默认是用PHP文件做服务器上传处理
+      type: String,
+      default: 'https://kaifa.jianbing.com/business/home/demo/post.php'
     }
   },
   methods: {
@@ -103,6 +107,22 @@ export default {
     deleteUpload() {
       this.uploadSrc = ''
       this.uploadState = false
+    },
+    uploadToServer(files) {
+      let data = new FormData()
+      let len = files.length, i = 0
+      while (i < len) {
+        data.append("file" + i, files[i])
+        i++
+      }
+      let xhr = new XMLHttpRequest()
+      xhr.open("post", this.action, true)
+      xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4) {
+          console.log(xhr.responseText);
+        }
+      }
+      xhr.send(data)
     }
   },
   mounted() {
@@ -114,6 +134,7 @@ export default {
           event.preventDefault() // 取消默认可拖拽事件
           if(event.type == 'drop') {
             _this.uploadSrc = event.dataTransfer.files
+            _this.uploadToServer(_this.uploadSrc)
             _this.$emit('unDrag', _this.uploadSrc)
           }
         })
