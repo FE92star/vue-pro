@@ -1,4 +1,4 @@
-import Input from './src/radio.vue'
+import Input from './src/input.vue'
 
 Input.install = function(Vue) {
   Vue.component(Input.name, Input)

@@ -2,6 +2,7 @@ import BaoButton from '@/myComponents/Basic/Button/index'
 import BaoRadio from '@/myComponents/Form/Radio/index'
 import BaoCheckbox from '@/myComponents/Form/Checkbox/index'
 import BaoSwitch from '@/myComponents/Form/Switch/index'
+import BaoInput from '@/myComponents/Form/Input/index'
 import BaoUpload from '@/myComponents/Form/Upload/index'
 import BaoProgress from '@/myComponents/DataShow/Progress/index'
 
@@ -10,6 +11,7 @@ const components = [
 	BaoRadio,
 	BaoCheckbox,
 	BaoSwitch,
+	BaoInput,
 	BaoUpload,
 	BaoProgress
 ]
@@ -30,6 +32,7 @@ export default {
 	BaoRadio,
 	BaoCheckbox,
 	BaoSwitch,
+	BaoInput,
 	BaoUpload,
 	BaoProgress
 }

@@ -15,7 +15,8 @@
     <img src="../../assets/loading.gif" alt="">
     <bao-checkbox v-model="bool" shape="circle">选项djajdjajdja</bao-checkbox>
     <bao-switch v-model="swiVal" :disabled="false"></bao-switch>
-    <!-- <bao-upload @change="changeFn" :userLimit="['png']" :drag="true" @unDrag="dragFn" multiple></bao-upload> -->
+    <bao-input placeholder="请输入金额" :maxlength="8" @input="focusFn" type="text" v-model="money"></bao-input>
+    <bao-upload @change="changeFn" :userLimit="['png']" :drag="true" @unDrag="dragFn" multiple></bao-upload>
   </div>
 </template>
 
@@ -24,7 +25,8 @@ export default {
   data: () => ({
     radio: '1',
     bool: false,
-    swiVal: true
+    swiVal: true,
+    money: 100000
   }),
   methods: {
     check(val) {
@@ -38,6 +40,9 @@ export default {
     },
     dragFn(files) {
       console.log(files);
+    },
+    focusFn(val) {
+      console.log(val);
     }
   }
 }
