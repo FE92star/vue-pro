@@ -13,9 +13,9 @@
       <bao-progress :percentage="100" animationState background='#4679E7'></bao-progress>
     </div>
     <img src="../../assets/loading.gif" alt="">
-    <bao-checkbox v-model="bool" shape="circle" disable>选项djajdjajdja</bao-checkbox>
-    <bao-upload @change="changeFn" :userLimit="['png']" :drag="true" @unDrag="dragFn" multiple></bao-upload>
-    <input type="file" name="" value="" @change="inputFn">
+    <bao-checkbox v-model="bool" shape="circle">选项djajdjajdja</bao-checkbox>
+    <bao-switch v-model="swiVal"></bao-switch>
+    <!-- <bao-upload @change="changeFn" :userLimit="['png']" :drag="true" @unDrag="dragFn" multiple></bao-upload> -->
   </div>
 </template>
 
@@ -23,7 +23,8 @@
 export default {
   data: () => ({
     radio: '1',
-    bool: false
+    bool: false,
+    swiVal: true
   }),
   methods: {
     check(val) {
@@ -37,9 +38,6 @@ export default {
     },
     dragFn(files) {
       console.log(files);
-    },
-    inputFn() {
-      console.log('input');
     }
   }
 }
