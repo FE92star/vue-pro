@@ -107,8 +107,11 @@ export default {
     deleteUpload() {
       this.uploadSrc = ''
       this.uploadState = false
+      setTimeout(() => { // DOM元素删除之后，绑定的事件监听器被移除，需要重新绑定，由于是异步执行，所以需要延时触发监听，保证可以在删除之后多次选择目标文件
+        this.fileRead()
+      }, 50)
     },
-    uploadToServer(files) {
+    uploadToServer(files) { // 文件上传到服务器
       let data = new FormData()
       let len = files.length, i = 0
       while (i < len) {
@@ -129,11 +132,11 @@ export default {
     let _this = this
     this.$nextTick(() => {
       this.fileRead()
-      if(!_this.drag) { // 撤销默认支持拖拽事件
+      if(!_this.drag) { // 撤销默认拖拽事件
         this.$refs.file.addEventListener('drop', function(event) {
           event.preventDefault() // 取消默认可拖拽事件
           if(event.type == 'drop') {
-            _this.uploadSrc = event.dataTransfer.files
+            _this.uploadSrc = event.dataTransfer.files // 被拖放的文件目标
             _this.uploadToServer(_this.uploadSrc)
             _this.$emit('unDrag', _this.uploadSrc)
           }

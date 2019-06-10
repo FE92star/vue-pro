@@ -14,8 +14,8 @@
     </div>
     <img src="../../assets/loading.gif" alt="">
     <bao-checkbox v-model="bool" shape="circle" disable>选项djajdjajdja</bao-checkbox>
-    <bao-upload @multChange="multFn" :userLimit="['png']" :drag="false" @unDrag="dragFn" multiple></bao-upload>
-    <input type="file" name="" value="">
+    <bao-upload @change="changeFn" :userLimit="['png']" :drag="true" @unDrag="dragFn" multiple></bao-upload>
+    <input type="file" name="" value="" @change="inputFn">
   </div>
 </template>
 
@@ -32,11 +32,14 @@ export default {
     change(val) {
       console.log(val, this.radio);
     },
-    multFn(files) {
-      console.log(files);
+    changeFn(files) {
+      // console.log(files);
     },
     dragFn(files) {
       console.log(files);
+    },
+    inputFn() {
+      console.log('input');
     }
   }
 }
