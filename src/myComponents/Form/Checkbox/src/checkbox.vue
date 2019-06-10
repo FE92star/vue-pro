@@ -88,6 +88,7 @@ export default {
   height: 20px;
   line-height: 20px;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .form-check__box label:before {
   content: '';

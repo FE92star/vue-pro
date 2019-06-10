@@ -14,7 +14,7 @@
     </div>
     <img src="../../assets/loading.gif" alt="">
     <bao-checkbox v-model="bool" shape="circle">选项djajdjajdja</bao-checkbox>
-    <bao-switch v-model="swiVal"></bao-switch>
+    <bao-switch v-model="swiVal" :disabled="false"></bao-switch>
     <!-- <bao-upload @change="changeFn" :userLimit="['png']" :drag="true" @unDrag="dragFn" multiple></bao-upload> -->
   </div>
 </template>

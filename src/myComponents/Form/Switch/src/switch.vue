@@ -1,8 +1,13 @@
 <!-- switch是否选择器checkbox的衍生，v-model转换，只有Boolean -->
 <template>
-  <span class="form__switch">
+  <span class="form__switch" ref="form">
     <div class="switch_box">
-      <input type="checkbox" v-bind:checked="checked" v-on:change="$emit('change', $event.target.checked)">
+      <input type="checkbox"
+        v-bind:checked="checked"
+        v-on:change="$emit('change', $event.target.checked)"
+        :disabled="disabled"
+        ref="switch"
+      >
       <transition name="bounce_switch">
         <div class="bg_switch" :style="{'backgroundColor': activeColor, 'width': switchWidth}" v-if="checked"></div>
       </transition>
@@ -12,6 +17,8 @@
 </template>
 
 <script>
+import { addClass } from '@/common/js/dom.js'
+
 export default {
   name: 'bao-switch',
   data: () => ({
@@ -23,6 +30,10 @@ export default {
   },
   props: {
     checked: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     width: {
       type: Number,
       default: 40
@@ -34,15 +45,25 @@ export default {
   },
   mounted() {
     this.switchWidth = this.width || 40
+    this.$nextTick(() => {
+      if(this.disabled) {
+        let sDom = this.$refs.switch
+        let fDom = this.$refs.form
+        addClass(sDom, 'switch_disabled')
+        addClass(fDom, 'form_disabled')
+      }
+    })
   }
 }
 </script>
 
 <style lang="less">
 .form__switch {
-  display: flex;
+  display: inline-flex;
+  box-sizing: border-box;
   align-items: center;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
   .switch_box {
     width: 40px;
     height: 20px;
@@ -83,6 +104,8 @@ export default {
     top: 0;
     z-index: 5;
     opacity: 0;
+    margin: 0;
+    cursor: pointer;
   }
 }
 .bounce_switch-enter, .bounce_switch-leave-to {
@@ -91,5 +114,12 @@ export default {
 }
 .bounce_switch-enter-active, .bounce_switch-leave-active {
   transition: all .4s ease-out;
+}
+.switch_disabled {
+  cursor: not-allowed !important;
+	background-image: none !important;
+}
+.form_disabled {
+  filter: opacity(.58) !important;
 }
 </style>
