@@ -4,6 +4,7 @@ import BaoCheckbox from '@/myComponents/Form/Checkbox/index'
 import BaoSwitch from '@/myComponents/Form/Switch/index'
 import BaoInput from '@/myComponents/Form/Input/index'
 import BaoUpload from '@/myComponents/Form/Upload/index'
+import BaoSlider from '@/myComponents/Form/Slider/index'
 import BaoProgress from '@/myComponents/DataShow/Progress/index'
 
 const components = [
@@ -13,6 +14,7 @@ const components = [
 	BaoSwitch,
 	BaoInput,
 	BaoUpload,
+	BaoSlider,
 	BaoProgress
 ]
 
@@ -34,5 +36,6 @@ export default {
 	BaoSwitch,
 	BaoInput,
 	BaoUpload,
+	BaoSlider,
 	BaoProgress
 }

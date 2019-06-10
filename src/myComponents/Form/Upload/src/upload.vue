@@ -176,6 +176,7 @@ export default {
     left: 0;
     top: 0;
     opacity: 0;
+    cursor: pointer;
   }
   img {
     width: 64px;
@@ -192,6 +193,7 @@ export default {
           display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   img[class~='upload'] {
     width: 100%;
     padding: 8px;
