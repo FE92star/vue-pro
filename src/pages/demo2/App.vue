@@ -30,7 +30,7 @@
         words
       </div>
     </bao-card>
-    <bao-table :tHeader="['11', '222', '333']" :tLists="[['aaa', 'bbb', 'ccc'], ['aaa', 'bbb', 'ccc']]"></bao-table>
+    <bao-table :tHeader="['11', '222', '333']" :tLists="[['aaa', 'bbb', 'ccc'], ['aaa', 'bbb', 'ccc']]" :edit="true"></bao-table>
   </div>
 </template>
 

@@ -7,7 +7,7 @@
       </tr>
       <!-- 表格内容 -->
       <tr v-if="tLists" v-for="(rVal, index) in tLists" :key="index">
-        <td v-for="(dVal, indexs) in rVal" :key="indexs">{{dVal}}</td>
+        <td v-for="(dVal, indexs) in rVal" :key="indexs" :contenteditable="edit">{{dVal}}</td>
       </tr>
     </table>
   </div>
@@ -33,6 +33,10 @@ export default {
       default: () => {
         return []
       }
+    },
+    edit: { // 是否为可编辑单元格
+      type: Boolean,
+      default: false
     }
   },
   created() {
