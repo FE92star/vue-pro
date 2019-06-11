@@ -15,7 +15,6 @@ const components = [
 	BaoSwitch,
 	BaoInput,
 	BaoUpload,
-	BaoFormpost,
 	BaoSlider,
 	BaoProgress
 ]
@@ -24,6 +23,8 @@ const components = [
 const install = function (Vue) {
 	if(install.installed) return
 	components.map(component => Vue.component(component.name, component))
+	// 插件
+	Vue.use(BaoFormpost)
 }
 
 if(typeof window !== 'undefined' && window.Vue) {

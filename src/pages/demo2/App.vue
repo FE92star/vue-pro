@@ -22,7 +22,7 @@
         <!-- <img src="//r.51gjj.com/image/static/icon-nstSlider-mark.png" alt=""> -->
       </bao-slider>
     </div>
-    <bao-formpost></bao-formpost>
+    <!-- <bao-formpost></bao-formpost> -->
   </div>
 </template>
 
@@ -53,6 +53,15 @@ export default {
     sliderFn(val) {
       console.log(val);
     }
+  },
+  mounted() {
+    this.$formpost.show({
+      url: 'a.php',
+      type: 'POST',
+      params: [
+        {name: 'name', value: 'Bob'}
+      ]
+    })
   }
 }
 </script>

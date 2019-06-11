@@ -1,3 +1,4 @@
+<!-- 2.2.0新增 model选项，用于双向绑定中的数据传递 允许一个自定义组件在使用 v-model 时定制 prop 和 event -->
 <template>
   <span class="form__switch" ref="form">
     <div class="switch_box">

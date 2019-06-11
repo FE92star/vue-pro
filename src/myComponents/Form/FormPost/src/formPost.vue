@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="formPost__wrap" v-if="false">
+  <div class="formPost__wrap" v-if="showPost">
     <form :action="url" :method="type" name="dataPost" ref="form">
-      <input type="submit" class="submit_button" @click="submitFn">
+      <input type="submit" class="submit_button">
       <input
         v-for="(item, index) in params"
         :key="index"
@@ -18,6 +18,7 @@ export default {
   name: 'bao-formpost',
   data() {
     return {
+      showPost: false,
       url: '', // 跳转的URL
       type: "POST",
       params: [] // 需要传递的参数,固定格式[{'name': 'name', 'value': 'Bob'}]
@@ -48,7 +49,7 @@ export default {
     }
   },
   mounted() {
-
+    this.submitFn()
   }
 }
 </script>
