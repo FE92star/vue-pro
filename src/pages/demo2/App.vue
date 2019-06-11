@@ -22,6 +22,7 @@
         <!-- <img src="//r.51gjj.com/image/static/icon-nstSlider-mark.png" alt=""> -->
       </bao-slider>
     </div>
+    <bao-formpost></bao-formpost>
   </div>
 </template>
 

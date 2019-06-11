@@ -1,4 +1,3 @@
-<!-- switch是否选择器checkbox的衍生，v-model转换，只有Boolean -->
 <template>
   <span class="form__switch" ref="form">
     <div class="switch_box">
