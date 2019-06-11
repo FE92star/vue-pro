@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="formPost__wrap" v-if="showPost">
-    <form :action="url" :method="type" name="dataPost" ref="form">
+    <form :action="url" :method="type" :enctype="enctype" name="dataPost" ref="form">
       <input type="submit" class="submit_button">
       <input
         v-for="(item, index) in params"
@@ -21,7 +21,8 @@ export default {
       showPost: false,
       url: '', // 跳转的URL
       type: "POST",
-      params: [] // 需要传递的参数,固定格式[{'name': 'name', 'value': 'Bob'}]
+      params: [], // 需要传递的参数,固定格式[{'name': 'name', 'value': 'Bob'}]
+      enctype: 'application/x-www-form-urlencoded', // 默认编码方式'multipart/form-data'——在使用包含文件上传控件的表单时，必须使用该值。
     }
   },
   computed: {
@@ -44,12 +45,16 @@ export default {
     submitFn() {
       setTimeout(() => {
         let form = this.$refs.form
-        form.submit()
+        if(form) {
+          form.submit()
+        }
       }, 100)
     }
   },
   mounted() {
-    this.submitFn()
+    this.$nextTick(() => {
+      this.submitFn()
+    })
   }
 }
 </script>

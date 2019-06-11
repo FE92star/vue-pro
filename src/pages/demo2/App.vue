@@ -9,20 +9,19 @@
       <bao-progress :percentage='50' type="circle" background='#4679E7' textColor='#4678e7' circleText='立即投资' strokeWidth="80" strokeHeight="80" circleWidth="35"></bao-progress>
     </div>
     <!-- 条形进度条 -->
-    <!-- <div class="line">
+    <div class="line">
       <bao-progress :percentage="100" animationState background='#4679E7'></bao-progress>
-    </div> -->
-    <!-- <img src="../../assets/loading.gif" alt="">
+    </div>
+    <img src="../../assets/loading.gif" alt="">
     <bao-checkbox v-model="bool" shape="circle">选项djajdjajdja</bao-checkbox>
     <bao-switch v-model="swiVal" :disabled="false"></bao-switch>
     <bao-input placeholder="请输入金额" :maxlength="8" @input="focusFn" type="number" v-model="money"></bao-input>
-    <bao-upload @change="changeFn" :userLimit="['png']" :drag="true" @unDrag="dragFn" multiple></bao-upload> -->
+    <bao-upload @change="changeFn" :userLimit="['png']" :drag="false" @unDrag="dragFn" multiple></bao-upload>
     <div class="" style="margin: 0 20px;">
       <bao-slider step="10" @change="sliderFn">
-        <!-- <img src="//r.51gjj.com/image/static/icon-nstSlider-mark.png" alt=""> -->
+        <img src="//r.51gjj.com/image/static/icon-nstSlider-mark.png" alt="">
       </bao-slider>
     </div>
-    <!-- <bao-formpost></bao-formpost> -->
   </div>
 </template>
 
@@ -55,13 +54,13 @@ export default {
     }
   },
   mounted() {
-    this.$formpost.show({
-      url: 'a.php',
-      type: 'POST',
-      params: [
-        {name: 'name', value: 'Bob'}
-      ]
-    })
+    // this.$formpost.show({
+    //   url: 'a.php',
+    //   type: 'POST',
+    //   params: [
+    //     {name: 'name', value: 'Bob'}
+    //   ]
+    // })
   }
 }
 </script>

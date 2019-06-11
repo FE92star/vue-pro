@@ -131,13 +131,17 @@ export default {
   mounted() {
     let _this = this
     this.$nextTick(() => {
-      this.fileRead()
+      if(window.FileReader) {
+        this.fileRead()
+      }
       if(!_this.drag) { // 撤销默认拖拽事件
         this.$refs.file.addEventListener('drop', function(event) {
           event.preventDefault() // 取消默认可拖拽事件
           if(event.type == 'drop') {
             _this.uploadSrc = event.dataTransfer.files // 被拖放的文件目标
-            _this.uploadToServer(_this.uploadSrc)
+            if(window.FormData) {
+              _this.uploadToServer(_this.uploadSrc)
+            }
             _this.$emit('unDrag', _this.uploadSrc)
           }
         })

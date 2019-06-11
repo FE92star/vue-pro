@@ -1,9 +1,8 @@
 <template lang="html">
-  <bao-formpost :url="action" :params="param"></bao-formpost>
+
 </template>
 
 <script>
-import BaoFormpost from './formPost.vue'
 
 export default {
   name: 'demo',
@@ -16,8 +15,16 @@ export default {
       ]
     }
   },
-  components: {
-    BaoFormpost
+  methods: {
+    postData() {
+      this.$formpost.show({
+        url: 'a.php',
+        type: 'POST',
+        params: [
+          {name: 'name', value: 'Bob'}
+        ]
+      })
+    }
   }
 }
 </script>
