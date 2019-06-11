@@ -20,7 +20,7 @@ export default {
     return {
       url: '', // 跳转的URL
       type: "POST",
-      params: [] // 需要传递的参数,固定格式[{'name': 'Bob'}]
+      params: [] // 需要传递的参数,固定格式[{'name': 'name', 'value': 'Bob'}]
     }
   },
   computed: {
