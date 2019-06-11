@@ -9,7 +9,7 @@
       <bao-progress :percentage='50' type="circle" background='#4679E7' textColor='#4678e7' circleText='立即投资' strokeWidth="80" strokeHeight="80" circleWidth="35"></bao-progress>
     </div>
     <!-- 条形进度条 -->
-    <div class="line">
+    <!-- <div class="line">
       <bao-progress :percentage="100" animationState background='#4679E7'></bao-progress>
     </div>
     <img src="../../assets/loading.gif" alt="">
@@ -21,7 +21,16 @@
       <bao-slider step="10" @change="sliderFn">
         <img src="//r.51gjj.com/image/static/icon-nstSlider-mark.png" alt="">
       </bao-slider>
-    </div>
+    </div> -->
+    <bao-card>
+      <div class="" slot="top">
+        title
+      </div>
+      <div class="" slot="bot">
+        words
+      </div>
+    </bao-card>
+    <bao-table :tHeader="['11', '222', '333']" :tLists="[['aaa', 'bbb', 'ccc'], ['aaa', 'bbb', 'ccc']]"></bao-table>
   </div>
 </template>
 
