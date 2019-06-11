@@ -17,9 +17,11 @@
     <bao-switch v-model="swiVal" :disabled="false"></bao-switch>
     <bao-input placeholder="请输入金额" :maxlength="8" @input="focusFn" type="number" v-model="money"></bao-input>
     <bao-upload @change="changeFn" :userLimit="['png']" :drag="true" @unDrag="dragFn" multiple></bao-upload> -->
-    <bao-slider>
-      <img src="//r.51gjj.com/image/static/icon-nstSlider-mark.png" alt="">
-    </bao-slider>
+    <div class="" style="margin: 0 20px;">
+      <bao-slider step="10" @change="sliderFn">
+        <!-- <img src="//r.51gjj.com/image/static/icon-nstSlider-mark.png" alt=""> -->
+      </bao-slider>
+    </div>
   </div>
 </template>
 
@@ -45,6 +47,9 @@ export default {
       console.log(files);
     },
     focusFn(val) {
+      console.log(val);
+    },
+    sliderFn(val) {
       console.log(val);
     }
   }
