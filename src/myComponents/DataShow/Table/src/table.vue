@@ -7,7 +7,7 @@
       </tr>
       <!-- 表格内容 -->
       <tr v-if="tLists" v-for="(rVal, index) in tLists" :key="index">
-        <td v-for="(dVal, indexs) in rVal" :key="indexs" :contenteditable="edit">{{dVal}}</td>
+        <td v-for="(dVal, indexs) in rVal" :key="indexs" :contenteditable="edit" @blur="blurFn" @focus="focusFn(index, indexs)">{{dVal}}</td>
       </tr>
     </table>
   </div>
@@ -24,12 +24,14 @@ export default {
   props: {
     tHeader: {
       type: Array,
+      required: true,
       default: () => {
         return []
       }
     },
     tLists: { // 二维数组
       type: Array,
+      required: true,
       default: () => {
         return []
       }
@@ -43,7 +45,19 @@ export default {
     if(this.tLists.length && this.tLists[0]) {
       if(this.tLists[0].length !== this.tHeader.length) {
         this.legal = false // 不合法
-        console.log(`请设置保持和表头同等长度的数据格式`);
+        throw new Error(`请设置保持和表头同等长度的数据格式`) // 抛错
+      }
+    }
+  },
+  methods: {
+    blurFn(e) { // 焦点失去事件
+      if(this.edit) {
+        this.$emit("blur", e.target.innerText)
+      }
+    },
+    focusFn(index, indexs) { // 获取焦点事件
+      if(this.edit) {
+        this.$emit("focus", index, indexs)
       }
     }
   }

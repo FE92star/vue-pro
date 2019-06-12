@@ -30,7 +30,14 @@
         words
       </div>
     </bao-card>
-    <bao-table :tHeader="['11', '222', '333']" :tLists="[['aaa', 'bbb', 'ccc'], ['aaa', 'bbb', 'ccc']]" :edit="true"></bao-table>
+    <bao-table
+      :tHeader="['11', '222', '333']"
+      :tLists="lists"
+      :edit="true"
+      @blur="blurTable"
+      @focus="focusTable"
+      >
+    </bao-table>
   </div>
 </template>
 
@@ -40,7 +47,10 @@ export default {
     radio: '1',
     bool: false,
     swiVal: true,
-    money: 100000
+    money: 100000,
+    lists: [['aaa', 'bbb', 'ccc'], ['aaa', 'bbb', 'ccc']],
+    index: 0,
+    indexs: 0,
   }),
   methods: {
     check(val) {
@@ -60,6 +70,15 @@ export default {
     },
     sliderFn(val) {
       console.log(val);
+    },
+    blurTable(text) {
+      this.lists[this.index][this.indexs] = text
+      console.log(this.lists);
+      // console.log(text);
+    },
+    focusTable(index, indexs) {
+      this.index = index
+      this.indexs = indexs
     }
   },
   mounted() {
