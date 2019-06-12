@@ -9,6 +9,7 @@ import BaoSlider from '@/myComponents/Form/Slider/index'
 import BaoProgress from '@/myComponents/DataShow/Progress/index'
 import BaoCard from '@/myComponents/DataShow/Card/index'
 import BaoTable from '@/myComponents/DataShow/Table/index'
+import BaoAudio from '@/myComponents/Others/Audio/index'
 
 const components = [
 	BaoButton,
@@ -20,7 +21,8 @@ const components = [
 	BaoSlider,
 	BaoProgress,
 	BaoCard,
-	BaoTable
+	BaoTable,
+	BaoAudio
 ]
 
 // 全局注册组件
@@ -47,5 +49,6 @@ export default {
 	BaoSlider,
 	BaoProgress,
 	BaoCard,
-	BaoTable
+	BaoTable,
+	BaoAudio
 }

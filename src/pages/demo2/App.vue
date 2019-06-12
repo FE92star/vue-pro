@@ -38,6 +38,7 @@
       @focus="focusTable"
       >
     </bao-table>
+    <bao-audio></bao-audio>
   </div>
 </template>
 
