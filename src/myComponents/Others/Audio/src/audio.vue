@@ -10,7 +10,7 @@
         <img src="../assets/play.png" alt="" v-if="!playStatus" @click="playMusic">
         <img src="../assets/pause.png" alt="" v-else @click="pauseMusic">
       </div>
-      <audio id="audio" :src="music"></audio>
+      <audio id="audio" :src="music" crossOrigin="anonymous"></audio>
     </div>
   </div>
 </template>
@@ -42,7 +42,6 @@ export default {
   },
   methods: {
     playMusic() {
-      console.log('play');
       this.playStatus = true
       document.getElementById('audio').play()
       document.addEventListener('WeixinJSBridgeReady', function() {
@@ -50,13 +49,30 @@ export default {
       }, false)
     },
     pauseMusic() {
-      console.log('pause');
       this.playStatus = false
       document.getElementById('audio').pause()
       document.addEventListener('WeixinJSBridgeReady', function() {
         document.getElementById('audio').pause()
       }, false)
+    },
+    audioFn() {
+      window.AudioContext = window.AudioContext || window.webkitAudioContext
+      let audioCtx = new AudioContext()
+      let audioDom = document.getElementById('audio')
+      let mediaSource = audioCtx.createMediaElementSource(audioDom)
+      let gainNode = audioCtx.createGain()
+      gainNode.gain.setValueAtTime(1, audioCtx.currentTime) // 初始化音量
+      mediaSource.connect(gainNode)
+      gainNode.connect(audioCtx.destination)
+      audioDom.play()
+      gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 2000)
+      // audioCtx.suspend()
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      // this.audioFn()
+    })
   }
 }
 </script>
