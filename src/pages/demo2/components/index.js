@@ -4,12 +4,14 @@ import BaoCheckbox from '@/myComponents/Form/Checkbox/index'
 import BaoSwitch from '@/myComponents/Form/Switch/index'
 import BaoInput from '@/myComponents/Form/Input/index'
 import BaoUpload from '@/myComponents/Form/Upload/index'
-import BaoFormpost from '@/myComponents/Form/FormPost/index'
 import BaoSlider from '@/myComponents/Form/Slider/index'
 import BaoProgress from '@/myComponents/DataShow/Progress/index'
 import BaoCard from '@/myComponents/DataShow/Card/index'
 import BaoTable from '@/myComponents/DataShow/Table/index'
 import BaoAudio from '@/myComponents/Others/Audio/index'
+
+import BaoFormpost from '@/myComponents/Form/FormPost/index'
+import BaoAlert from '@/myComponents/Tips/Alert/index'
 
 const components = [
 	BaoButton,
@@ -31,6 +33,7 @@ const install = function (Vue) {
 	components.map(component => Vue.component(component.name, component))
 	// 插件
 	Vue.use(BaoFormpost)
+	Vue.use(BaoAlert)
 }
 
 if(typeof window !== 'undefined' && window.Vue) {
