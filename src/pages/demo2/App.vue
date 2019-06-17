@@ -90,14 +90,30 @@ export default {
     //     {name: 'name', value: 'Bob'}
     //   ]
     // })
-    this.$toast.show('')
-    setTimeout(() => {
-      this.$toast.show({
-        message: '数据请求失败',
-        position: 'top',
-        type: 'warning'
-      })
-    }, 5000)
+    // this.$toast.show('')
+    // setTimeout(() => {
+    //   this.$toast.show({
+    //     message: '数据请求失败',
+    //     position: 'top',
+    //     type: 'warning'
+    //   })
+    // }, 5000)
+    this.$dialog.confirm({
+      animate: 'bounce',
+      title: '请先解锁',
+      texts: `本章节内容还未解锁，请先解锁~`,
+      btn: ['取消', '确定'],
+      confirmFn: () => {
+        this.$dialog.cancel()
+        window.location.href = 'https://www.baidu.com'
+      },
+      cancleFn: () => {
+        this.$dialog.cancel()
+      }
+      // checkFn: () => {
+      //   this.$dialog.cancel()
+      // }
+    })
   }
 }
 </script>
