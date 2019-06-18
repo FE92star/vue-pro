@@ -13,6 +13,7 @@ import BaoAudio from '@/myComponents/Others/Audio/index'
 import BaoFormpost from '@/myComponents/Form/FormPost/index'
 import BaoAlert from '@/myComponents/Tips/Alert/index'
 import BaoDialog from '@/myComponents/Tips/Dialog/index'
+import BaoLoading from '@/myComponents/Tips/Loading/index'
 
 const components = [
 	BaoButton,
@@ -36,6 +37,7 @@ const install = function (Vue) {
 	Vue.use(BaoFormpost)
 	Vue.use(BaoAlert)
 	Vue.use(BaoDialog)
+	Vue.use(BaoLoading)
 }
 
 if(typeof window !== 'undefined' && window.Vue) {
@@ -43,17 +45,5 @@ if(typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-	install,
-	// BaoButton,
-	// BaoRadio,
-	// BaoCheckbox,
-	// BaoSwitch,
-	// BaoInput,
-	// BaoUpload,
-	// BaoFormpost,
-	// BaoSlider,
-	// BaoProgress,
-	// BaoCard,
-	// BaoTable,
-	// BaoAudio
+	install
 }
