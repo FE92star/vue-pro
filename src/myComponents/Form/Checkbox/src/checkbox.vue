@@ -5,7 +5,7 @@
       name="form_checkbox"
       ref="checkbox"
       :id="`id${checkID}`"
-      v-model="model"
+      v-model.lazy="model"
       @click="handeleChange"
       :disabled="disable"
     >
