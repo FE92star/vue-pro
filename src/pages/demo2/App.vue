@@ -49,6 +49,19 @@
       afterTexts="下一页"
     >
     </bao-pagination>
+    <bao-tab
+      :tabList="['tab1', 'tab2', 'tab3']"
+    >
+      <div slot="tab_0">
+        111111
+      </div>
+      <div slot="tab_1">
+        222222
+      </div>
+      <div slot="tab_2">
+        333333
+      </div>
+    </bao-tab>
   </div>
 </template>
 
@@ -142,6 +155,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import url('../../common/css/reset.less');
 * {
   margin: 0;
   padding: 0;
