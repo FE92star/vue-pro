@@ -40,7 +40,7 @@
     </bao-table>
     <bao-audio></bao-audio>
     <bao-pagination
-      :range="100"
+      :range="10"
       :current="10"
       @preFn="fn1"
       @nextFn="fn2"
@@ -49,19 +49,22 @@
       afterTexts="下一页"
     >
     </bao-pagination>
-    <bao-tab
-      :tabList="['tab1', 'tab2', 'tab3']"
-    >
-      <div slot="tab_0">
-        111111
-      </div>
-      <div slot="tab_1">
-        222222
-      </div>
-      <div slot="tab_2">
-        333333
-      </div>
-    </bao-tab>
+    <div class="tab_wrap">
+      <bao-tab
+        :tabList="['tab1', 'tab2', 'tab3']"
+        class="tabs"
+      >
+        <div slot="tab_0">
+          111111
+        </div>
+        <div slot="tab_1">
+          222222
+        </div>
+        <div slot="tab_2">
+          333333
+        </div>
+      </bao-tab>
+    </div>
   </div>
 </template>
 
@@ -170,5 +173,11 @@ export default {
 .line {
   width: 100%;
   height: 12px;
+}
+.tab_wrap {
+  width: 100%;
+  /deep/ .tabs { // 用于修改子组件的默认样式并保持独立性，不会污染其他地方的样式
+    color: #fff;
+  }
 }
 </style>
