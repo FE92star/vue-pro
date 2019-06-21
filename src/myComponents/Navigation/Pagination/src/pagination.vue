@@ -32,8 +32,6 @@
 export default {
   name: 'bao-pagination',
   data: () => ({
-    beforeTexts: '<',
-    afterTexts: '>',
     num: 0
   }),
   props: {
@@ -44,6 +42,14 @@ export default {
     range: {
       type: Number,
       default: 1
+    },
+    beforeTexts: {
+      type: String,
+      default: '<'
+    },
+    afterTexts: {
+      type: String,
+      default: '>'
     }
   },
   created() {
@@ -86,6 +92,7 @@ export default {
   .page_item {
     display: inline-block;
     margin: 0 5px;
+    padding: 0 4px;
     background-color: #f4f4f5;
     min-width: 30px;
     border-radius: 2px;

@@ -45,6 +45,8 @@
       @preFn="fn1"
       @nextFn="fn2"
       @change="fn3"
+      beforeTexts="上一页"
+      afterTexts="下一页"
     >
     </bao-pagination>
   </div>
