@@ -9,6 +9,7 @@ import BaoProgress from '@/myComponents/DataShow/Progress/index'
 import BaoCard from '@/myComponents/DataShow/Card/index'
 import BaoTable from '@/myComponents/DataShow/Table/index'
 import BaoAudio from '@/myComponents/Others/Audio/index'
+import BaoPagination from '@/myComponents/Navigation/Pagination/index'
 
 import BaoFormpost from '@/myComponents/Form/FormPost/index'
 import BaoAlert from '@/myComponents/Tips/Alert/index'
@@ -26,7 +27,8 @@ const components = [
 	BaoProgress,
 	BaoCard,
 	BaoTable,
-	BaoAudio
+	BaoAudio,
+	BaoPagination
 ]
 
 // 全局注册组件

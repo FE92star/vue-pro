@@ -39,6 +39,14 @@
       >
     </bao-table>
     <bao-audio></bao-audio>
+    <bao-pagination
+      :range="100"
+      :current="10"
+      @preFn="fn1"
+      @nextFn="fn2"
+      @change="fn3"
+    >
+    </bao-pagination>
   </div>
 </template>
 
@@ -80,7 +88,16 @@ export default {
     focusTable(index, indexs) {
       this.index = index
       this.indexs = indexs
-    }
+    },
+    fn1(num, range) {
+      console.log(num, range);
+    },
+    fn2(num, range) {
+      console.log(num, range);
+    },
+    fn3(val, range) {
+      console.log(val, range);
+    },
   },
   mounted() {
     // this.$formpost.show({

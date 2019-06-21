@@ -1,13 +1,21 @@
 <template lang="html">
-  <div class="container">
-    <div
-      class="item"
-      :class="`color${index+1}`"
-      v-for="(item, index) in 9"
-      :key="index"
-      :style="randomColor(index)"
-      >
-      {{item}}
+  <div class="">
+    <div class="container">
+      <div
+        class="item"
+        :class="`color${index+1}`"
+        v-for="(item, index) in 9"
+        :key="index"
+        :style="randomColor(index)"
+        >
+        {{item}}
+      </div>
+    </div>
+    <div class="loading">
+      正在加载中<span>...</span>
+    </div>
+    <div class="box">
+
     </div>
   </div>
 </template>
@@ -48,5 +56,29 @@ export default {
   .item {
     // justify-items: center;
   }
+}
+.loading {
+  span {
+      display: inline-block;
+      height: 1em;
+      line-height: 1;
+      text-align: left;
+      vertical-align: -.25em;
+      overflow: hidden;
+  }
+  span::before {
+      display: block;
+      content: '...\A..\A.';
+      white-space: pre-wrap;
+      animation: dot 3s infinite step-start both;
+  }
+  @keyframes dot {
+      33% { transform: translateY(-2em); }
+      66% { transform: translateY(-1em); }
+  }
+}
+.box {
+  padding: 50%;
+  background: blue;
 }
 </style>
