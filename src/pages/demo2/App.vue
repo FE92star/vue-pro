@@ -22,7 +22,7 @@
         <img src="//r.51gjj.com/image/static/icon-nstSlider-mark.png" alt="">
       </bao-slider>
     </div> -->
-    <bao-card>
+    <!-- <bao-card>
       <div class="" slot="top">
         title
       </div>
@@ -38,7 +38,7 @@
       @focus="focusTable"
       >
     </bao-table>
-    <bao-audio></bao-audio>
+    <bao-audio></bao-audio> -->
     <bao-pagination
       :range="10"
       :current="10"
@@ -66,7 +66,7 @@
       </bao-tab>
     </div> -->
     <bao-collapse accordion animateName="toastSlideUp">
-      <bao-collapseItem :title="item.title" v-for="(item, index) in listData" :key="index">
+      <bao-collapseItem :title="item.title" v-for="(item, index) in listData" :key="index" :topName="`${index}`">
         <!-- <img src="//r.51gjj.com/act/release/img/20180518_licai_fuli_icon.png" alt="" slot="icon"> -->
         <div class="" slot="content">
           {{item.desc}}

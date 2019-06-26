@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="collapse_wrap">
+  <div class="collapse_wrap" @click="showPiano">
     <slot></slot>
   </div>
 </template>
@@ -21,6 +21,13 @@ export default {
     return {
       accordion: this.accordion,
       name: this.animateName
+    }
+  },
+  methods: {
+    showPiano(e) {
+      let target = e.target || e.srcElement
+      let name = target.getAttribute('topName')
+      console.log(name);
     }
   }
 }

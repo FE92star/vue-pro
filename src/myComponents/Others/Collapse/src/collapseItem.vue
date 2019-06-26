@@ -1,7 +1,12 @@
 <template lang="html">
   <transition :name="name">
-    <div class="collapse_item" v-show="showItem" :class="(showBorder ? 'underlineF' : '')" :style="(delayState ? delayStyle : {})">
-      <div class="collapse_top" @click.prevent="openCollapse">
+    <div
+      class="collapse_item"
+      v-show="showItem"
+      :class="(showBorder ? 'underlineF' : '')"
+      :style="(delayState ? delayStyle : {})"
+    >
+      <div class="collapse_top" @click.prevent="openCollapse" :topName="topName">
         <div class="left">
           {{title}}
         </div>
@@ -47,6 +52,10 @@ export default {
     isExpand: {
       type: Boolean,
       default: false
+    },
+    topName: { // 自定义属性——用于区分不同的点击对象
+      type: String,
+      default: ''
     }
   },
   computed: {
