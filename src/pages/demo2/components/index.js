@@ -11,6 +11,8 @@ import BaoTable from '@/myComponents/DataShow/Table/index'
 import BaoAudio from '@/myComponents/Others/Audio/index'
 import BaoPagination from '@/myComponents/Navigation/Pagination/index'
 import BaoTab from '@/myComponents/Navigation/Tab/index'
+import BaoCollapse from '@/myComponents/Others/Collapse/index'
+import BaoCollapseItem from '@/myComponents/Others/CollapseItem/index'
 
 import BaoFormpost from '@/myComponents/Form/FormPost/index'
 import BaoAlert from '@/myComponents/Tips/Alert/index'
@@ -30,7 +32,9 @@ const components = [
 	BaoTable,
 	BaoAudio,
 	BaoPagination,
-	BaoTab
+	BaoTab,
+	BaoCollapse,
+	BaoCollapseItem
 ]
 
 // 全局注册组件

@@ -49,7 +49,7 @@
       afterTexts="下一页"
     >
     </bao-pagination>
-    <div class="tab_wrap">
+    <!-- <div class="tab_wrap">
       <bao-tab
         :tabList="['tab1', 'tab2', 'tab3']"
         class="tabs"
@@ -64,7 +64,15 @@
           333333
         </div>
       </bao-tab>
-    </div>
+    </div> -->
+    <bao-collapse accordion animateName="toastSlideUp">
+      <bao-collapseItem :title="item.title" v-for="(item, index) in listData" :key="index">
+        <!-- <img src="//r.51gjj.com/act/release/img/20180518_licai_fuli_icon.png" alt="" slot="icon"> -->
+        <div class="" slot="content">
+          {{item.desc}}
+        </div>
+      </bao-collapseItem>
+    </bao-collapse>
   </div>
 </template>
 
@@ -78,7 +86,28 @@ export default {
     lists: [['aaa', 'bbb', 'ccc'], ['aaa', 'bbb', 'ccc']],
     index: 0,
     indexs: 0,
+    listData: [
+      {
+        title: '111',
+        desc: 'aaa'
+      },
+      {
+        title: '222',
+        desc: 'bbb'
+      },
+      {
+        title: '222',
+        desc: 'bbb'
+      },
+      {
+        title: '222',
+        desc: 'bbb'
+      },
+    ],
   }),
+  components: {
+
+  },
   methods: {
     check(val) {
       console.log(val);
