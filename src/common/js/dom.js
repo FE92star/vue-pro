@@ -55,3 +55,16 @@ export const removeClass = (el, cls) => {
     el.className = trim(curClass);
   }
 };
+
+// 动态添加样式
+export const addCssStyle = (cssStyle) => {
+  let head = document.head || document.getElementsByTagName('head')[0]
+  let styleDom = document.createElement('style')
+  styleDom.type = 'text/css'
+  if(styleDom.styleSheet) {
+    styleDom.styleSheet.cssText = cssStyle
+  }else {
+    styleDom.appendChild(document.createTextNode(cssStyle))
+  }
+  head.appendChild(styleDom)
+}

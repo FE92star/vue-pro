@@ -46,5 +46,9 @@ module.exports = {
   },
   // 输出文件目录
   outputDir: outPutDir(),
-  lintOnSave: false
+  lintOnSave: false,
+  devServer: {
+    port: 8080,
+    openPage: 'h5/demo/'
+  }
 }
