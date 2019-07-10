@@ -9,8 +9,17 @@
 export default {
   methods: {
     goPage() {
-      this.$router.push('/page3')
+      // this.$router.push('/page3')
+      this.$router.goBack(-1)
     }
+  },
+  mounted() {
+    Global.listenPage({
+      time: 5,
+      onload: function() {
+        console.log('page2');
+      }
+    })
   }
 }
 </script>

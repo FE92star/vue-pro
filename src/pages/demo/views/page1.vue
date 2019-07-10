@@ -25,22 +25,41 @@ export default {
     }
   },
   mounted() {
+    // Global.listenPage({
+    //   time: 5,
+    //   onload: function() {
+    //     console.log('page1');
+    //   }
+    // })
+    function getHiddenProp() {
+      var prefixes = ['webkit', 'moz', 'ms', 'o'];
+      if ('hidden' in document) return 'hidden';
+      for (var i = 0; i < prefixes.length; i++) {
+        if ((prefixes[i] + 'Hidden') in document)
+          return prefixes[i] + 'Hidden';
+      }
+      return null;
+    }
+    let hidden = getHiddenProp()
+    document.addEventListener("visibilitychange", function() {
+      console.log('page1 change', document[hidden]);
+    })
     // this.simuTimer()
-    console.log(numberFormat().formate(68999.88, 2));
-    setTimeout(function(){
-        console.log('定时器开始啦')
-    });
-
-    new Promise(function(resolve){
-        console.log('马上执行for循环啦');
-        for(var i = 0; i < 10000; i++){
-            i == 9999 && resolve();
-        }
-    }).then(function(){
-        console.log('执行then函数啦')
-    });
-
-    console.log('代码执行结束');
+    // console.log(numberFormat().formate(68999.88, 2));
+    // setTimeout(function(){
+    //     console.log('定时器开始啦')
+    // });
+    //
+    // new Promise(function(resolve){
+    //     console.log('马上执行for循环啦');
+    //     for(var i = 0; i < 10000; i++){
+    //         i == 9999 && resolve();
+    //     }
+    // }).then(function(){
+    //     console.log('执行then函数啦')
+    // });
+    //
+    // console.log('代码执行结束');
   }
 }
 </script>
