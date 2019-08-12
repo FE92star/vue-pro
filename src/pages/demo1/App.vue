@@ -10,12 +10,19 @@
 
 <script>
 import { debounceFn, throttleFn } from '@/common/js/optimize.js'
+import { decarFn } from '@/common/js/base'
 
 export default {
   name: 'demo1',
   data: () => ({
     pageState: 'loading',
     count: 0,
+    array: [
+      [1, 2, 3],
+      ['a', 'b', 'c', 'd'],
+      ['x', 'y', 'z'],
+      ['p', 'q', 'o']
+    ]
   }),
   methods: {
     scrollFn() {
@@ -36,6 +43,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.array[0][0] + this.array[1][0] + this.array[2][0] + this.array[3][0]);
     // this.scrollFn()
     let _this = this
     // const button = this.$refs.button
@@ -46,9 +54,10 @@ export default {
     // setTimeout(() => {
     //   this.pageState = 'success'
     // }, 500)
-    this.$nextTick(() => {
-      this.$refs.img.scrollIntoView(false)
-    })
+    // this.$nextTick(() => {
+    //   this.$refs.img.scrollIntoView(false)
+    // })
+    console.log(decarFn(this.array));
   }
 }
 </script>
