@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store/index.js'
 import '@/common/js/bridge'
+import '@/common/js/global'
 import components from './components/index.js'
 Vue.use(components)
 
