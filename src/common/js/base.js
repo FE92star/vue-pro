@@ -94,3 +94,29 @@ export const pipe = (...fns) => {
     }, x)
   }
 }
+// 字符串排列组合-用的是笛卡尔积算法
+export function decarFn(nums) {
+  return nums.reduce((a, b) => {
+    let m = a.map(item => b.map(i => [i].concat(item)))
+    return m.reduce((c, d) => c.concat(d), [])
+  })
+}
+// 算法二
+export function eachTwo(arr1, arr2){
+  let arr = []
+  for(let i = 0; i < arr1.length; i++) {
+    for(let j= 0; j < arr2.length; j++) {
+      if(arr1[i] instanceof Array) {
+        arr.push([...arr1[i]].concat(arr2[j]))
+      }else {
+        arr.push(arr1[i].concat(arr2[j]))
+      }
+    }
+  }
+}
+
+export function eachAll(a) {
+  return a.reduce((a, b) => {
+    return eachTwo(a, b)
+  })
+}

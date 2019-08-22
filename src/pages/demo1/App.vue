@@ -1,38 +1,86 @@
 <template lang="html">
-  <div class="">
-    <p></p>
+  <div class="page">
+    <throttle :time="1000" events="click">
+      <button @click="postFn"></button>
+    </throttle>
+    <div class="empty"></div>
+    <img src="//r.51gjj.com/act/release/img/20180518_licai_fuli_icon.png" alt="" ref="img">
   </div>
 </template>
 
 <script>
-export default {
-  data: () => ({
+import { debounceFn, throttleFn } from '@/common/js/optimize.js'
+import { decarFn } from '@/common/js/base'
 
+export default {
+  name: 'demo1',
+  data: () => ({
+    pageState: 'loading',
+    count: 0,
+    array: [
+      [1, 2, 3],
+      ['a', 'b', 'c', 'd'],
+      ['x', 'y', 'z'],
+      ['p', 'q', 'o']
+    ]
   }),
   methods: {
-    compose(...fns) {
-      return function (x) {
-        return fns.reduceRight(function(arg,fn){
-            return fn(arg);
-        },x)
-      }
+    scrollFn() {
+      document.addEventListener('scroll', throttleFn(function() {
+        console.log(6666);
+      }, 1000))
+    },
+    pageFn(top) {
+      console.log(top);
+    },
+    postFn() {
+      let _this = this
+      console.log(6666);
+      // throttleFn(function() {
+      //   _this.count ++
+      //   console.log(_this.count);
+      // }, 1000)
     }
   },
   mounted() {
-    console.log(new Date() instanceof Date);
-    // console.log(/.+\?(.+)$/.exec('http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&enabled'));
-    var regex = /\d{2,5}?/g;
-    var string = "123 1234 12345 123456";
-    console.log( string.match(regex) );
+    console.log(this.array[0][0] + this.array[1][0] + this.array[2][0] + this.array[3][0]);
+    // this.scrollFn()
+    let _this = this
+    // const button = this.$refs.button
+    // button.addEventListener('click', throttleFn(function() {
+    //   _this.count ++
+    //   console.log(_this.count);
+    // }, 1000))
+    // setTimeout(() => {
+    //   this.pageState = 'success'
+    // }, 500)
+    // this.$nextTick(() => {
+    //   this.$refs.img.scrollIntoView(false)
+    // })
+    console.log(decarFn(this.array));
   }
 }
 </script>
 
-<style lang="less" scoped>
-p {
-  border: 1px solid #cdcdcd;
+<style lang="less">
+.page {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
-  height: 0;
-  padding-bottom: 50%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  button {
+    width: 250px;
+    height: 80px;
+    background: rgba(250, 156, 156, .6);
+    border: 0;
+    outline: 0;
+  }
+  .empty {
+    width: 100%;
+    min-height: 800px;
+  }
 }
 </style>
