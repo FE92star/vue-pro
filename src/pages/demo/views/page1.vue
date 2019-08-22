@@ -7,6 +7,8 @@
 
 <script>
 import { numberFormat } from '@/common/js/number'
+import reload from '@/common/js/reload'
+
 
 export default {
   methods: {
@@ -31,35 +33,33 @@ export default {
     //     console.log('page1');
     //   }
     // })
-    function getHiddenProp() {
-      var prefixes = ['webkit', 'moz', 'ms', 'o'];
-      if ('hidden' in document) return 'hidden';
-      for (var i = 0; i < prefixes.length; i++) {
-        if ((prefixes[i] + 'Hidden') in document)
-          return prefixes[i] + 'Hidden';
-      }
-      return null;
+    // reload({href: window.location.href, time: 1000}).change({
+    //   onload() {
+    //     console.log('this is a page1 onload function')
+    //   },
+    //   onclose() {
+    //     console.log('this is a page1 onclose function')
+    //   }
+    // }).focus().blur()
+    // const isType = type => target => `[object ${type}]` === Object.prototype.toString.call(target)
+    // console.log(isType('Array')([]));
+    // const calculate = (total, currentVal) => {
+    //   return total + currentVal
+    // }
+    // console.log([1, 2, 3, 4].reduce(calculate, 5));
+    // (function(num) {
+    //   var a = 1
+    //   console.log(num + 10);
+    // })(10)
+    const fn = () => {
+      console.log('fn');
     }
-    let hidden = getHiddenProp()
-    document.addEventListener("visibilitychange", function() {
-      console.log('page1 change', document[hidden]);
+    const newFn = fn.before(function() {
+      console.log('before');
+    }).after(function() {
+      console.log('after');
     })
-    // this.simuTimer()
-    // console.log(numberFormat().formate(68999.88, 2));
-    // setTimeout(function(){
-    //     console.log('定时器开始啦')
-    // });
-    //
-    // new Promise(function(resolve){
-    //     console.log('马上执行for循环啦');
-    //     for(var i = 0; i < 10000; i++){
-    //         i == 9999 && resolve();
-    //     }
-    // }).then(function(){
-    //     console.log('执行then函数啦')
-    // });
-    //
-    // console.log('代码执行结束');
+    newFn()
   }
 }
 </script>

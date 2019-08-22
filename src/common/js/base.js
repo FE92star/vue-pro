@@ -75,3 +75,22 @@ export const Publish = () => {
   }
   return new PubSub
 }
+// 组合函数——执行顺序是从后往前执行
+export const compose = (...fns) => { //
+  return function(x) {
+    return fns.reduceRight(function(arg, fn) {
+      return fn(arg)
+    }, x)
+  }
+}
+/**
+* 管道函数——从前往后执行——前一个函数执行的结果是后一个函数执行的参数
+@param {function} fns
+**/
+export const pipe = (...fns) => {
+  return function(x) {
+    return fns.reduce(function(arg, fn) {
+      return fn(arg)
+    }, x)
+  }
+}
