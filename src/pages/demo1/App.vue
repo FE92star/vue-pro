@@ -10,7 +10,7 @@
 
 <script>
 import { debounceFn, throttleFn } from '@/common/js/optimize.js'
-import { decarFn } from '@/common/js/base'
+import { decarFn, curryFn } from '@/common/js/base'
 
 export default {
   name: 'demo1',
@@ -43,7 +43,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.array[0][0] + this.array[1][0] + this.array[2][0] + this.array[3][0]);
+    // console.log(this.array[0][0] + this.array[1][0] + this.array[2][0] + this.array[3][0]);
     // this.scrollFn()
     let _this = this
     // const button = this.$refs.button
@@ -57,7 +57,12 @@ export default {
     // this.$nextTick(() => {
     //   this.$refs.img.scrollIntoView(false)
     // })
-    console.log(decarFn(this.array));
+    // console.log(decarFn(this.array));
+    let fn = (a, b) => {
+      return a + b
+    }
+    let curryFns = curryFn(fn, 5)
+    console.log(curryFns(3));
   }
 }
 </script>

@@ -120,3 +120,13 @@ export function eachAll(a) {
     return eachTwo(a, b)
   })
 }
+
+// 函数柯里化
+export function curryFn(fn=function() {}) {
+  let args = Array.prototype.slice.call(arguments, 1) // 获取除开第一个函数参数的剩余参数列表
+  return function() {
+    let innerArgs = Array.prototype.slice.call(arguments) // 获取内部参数列表
+    let finalArgs = innerArgs.concat(args) // 保存所有参数
+    return fn.apply(null, finalArgs)
+  }
+}
