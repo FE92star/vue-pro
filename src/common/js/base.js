@@ -48,26 +48,33 @@ export const New = (func) => {
   return res
 }
 
-/*实现简单发布订阅者模式*/
+/*实现简单发布订阅者模式,先发布，再执行订阅事件，多用于异步事件的处理*/
 export const Publish = () => {
   class PubSub {
     constructor() {
       this.list = {}
+      this.cacheLists = [] // 缓存列表
     }
     subscribe(key, fn) { //订阅
       if(!this.list[key]) {
         this.list[key] = []
       }
       this.list[key].push(fn)
+      for(let i=0; i<this.cacheLists.length; i++) { // 在订阅时执行缓存函数
+        this.cacheLists[i]()
+      }
     }
     publish() { //发布
       let arg = arguments
-      let key = [].shift.call(arg)
-      let fns = this.list[key]
-      if(!fns || fns.length <= 0) return false
-      for(let i=0, len=fns.length; i<len; i++) {
-        fns[i].apply(this, arg)
+      const self = this
+      function cache() {
+        var eventType = Array.prototype.shift.call(arg) // 拿到所有参数
+        var arr = self.list[eventType]
+        for(let i=0; i<arr.length; i++) {
+          arr[i].apply(arr[i], arg)
+        }
       }
+      this.cacheLists.push(cache) // 发布存储执行函数
     }
     unSubscribe(key) {
       delete this.list[key]
