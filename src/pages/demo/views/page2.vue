@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import reload from '@/common/js/reload'
+
 export default {
   methods: {
     goPage() {
@@ -14,12 +16,14 @@ export default {
     }
   },
   mounted() {
-    Global.listenPage({
-      time: 5,
-      onload: function() {
-        console.log('page2');
+    reload({href: window.location.href, time: 1000}).change({
+      onload() {
+        console.log('this is a page2 onload function')
+      },
+      onclose() {
+        console.log('this is a page2 onclose function')
       }
-    })
+    }).focus().blur()
   }
 }
 </script>

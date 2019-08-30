@@ -48,32 +48,58 @@ export const New = (func) => {
   return res
 }
 
-/*实现简单发布订阅者模式*/
+/*实现简单发布订阅者模式,先发布，再执行订阅事件，多用于异步事件的处理*/
 export const Publish = () => {
   class PubSub {
     constructor() {
       this.list = {}
+      this.cacheLists = [] // 缓存列表
     }
     subscribe(key, fn) { //订阅
       if(!this.list[key]) {
         this.list[key] = []
       }
       this.list[key].push(fn)
+      for(let i=0; i<this.cacheLists.length; i++) { // 在订阅时执行缓存函数
+        this.cacheLists[i]()
+      }
     }
     publish() { //发布
       let arg = arguments
-      let key = [].shift.call(arg)
-      let fns = this.list[key]
-      if(!fns || fns.length <= 0) return false
-      for(let i=0, len=fns.length; i<len; i++) {
-        fns[i].apply(this, arg)
+      const self = this
+      function cache() {
+        var eventType = Array.prototype.shift.call(arg) // 拿到所有参数
+        var arr = self.list[eventType]
+        for(let i=0; i<arr.length; i++) {
+          arr[i].apply(arr[i], arg)
+        }
       }
+      this.cacheLists.push(cache) // 发布存储执行函数
     }
     unSubscribe(key) {
       delete this.list[key]
     }
   }
   return new PubSub
+}
+// 组合函数——执行顺序是从后往前执行
+export const compose = (...fns) => { //
+  return function(x) {
+    return fns.reduceRight(function(arg, fn) {
+      return fn(arg)
+    }, x)
+  }
+}
+/**
+* 管道函数——从前往后执行——前一个函数执行的结果是后一个函数执行的参数
+@param {function} fns
+**/
+export const pipe = (...fns) => {
+  return function(x) {
+    return fns.reduce(function(arg, fn) {
+      return fn(arg)
+    }, x)
+  }
 }
 // 字符串排列组合-用的是笛卡尔积算法
 export function decarFn(nums) {
@@ -100,4 +126,14 @@ export function eachAll(a) {
   return a.reduce((a, b) => {
     return eachTwo(a, b)
   })
+}
+
+// 函数柯里化
+export function curryFn(fn=function() {}) {
+  let args = Array.prototype.slice.call(arguments, 1) // 获取除开第一个函数参数的剩余参数列表
+  return function() {
+    let innerArgs = Array.prototype.slice.call(arguments) // 获取内部参数列表
+    let finalArgs = innerArgs.concat(args) // 保存所有参数
+    return fn.apply(null, finalArgs)
+  }
 }
