@@ -35,29 +35,20 @@ export default {
     },
     postFn() {
       let _this = this
-      console.log(6666);
-      // throttleFn(function() {
-      //   _this.count ++
-      //   console.log(_this.count);
-      // }, 1000)
     }
   },
   mounted() {
-    console.log(this.array[0][0] + this.array[1][0] + this.array[2][0] + this.array[3][0]);
-    // this.scrollFn()
-    let _this = this
-    // const button = this.$refs.button
-    // button.addEventListener('click', throttleFn(function() {
-    //   _this.count ++
-    //   console.log(_this.count);
-    // }, 1000))
-    // setTimeout(() => {
-    //   this.pageState = 'success'
-    // }, 500)
-    // this.$nextTick(() => {
-    //   this.$refs.img.scrollIntoView(false)
-    // })
-    console.log(decarFn(this.array));
+    let arr = [1, 2, 3]
+    let newArr = [...arr]
+    newArr.push(4)
+    console.log(arr, newArr);
+    const randomCode = (v) => {
+      let codeArr = []
+      for(let i=0; i<v; i++) {
+        codeArr.push(Number.parseInt(Math.random()*10))
+      }
+      return codeArr.join('')
+    }
   }
 }
 </script>
