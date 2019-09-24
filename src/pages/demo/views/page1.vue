@@ -2,15 +2,19 @@
   <div class="">
     page1
     <button type="button" name="button" @click="goPage" style="background: red;"></button>
+    <audio-box ref="audio"></audio-box>
   </div>
 </template>
 
 <script>
 import { numberFormat } from '@/common/js/number'
-import reload from '@/common/js/reload'
-
+import reload from '@/common/js/reloads'
+import AudioBox from '@/myComponents/Others/Audio'
 
 export default {
+  components: {
+    AudioBox
+  },
   methods: {
     goPage() {
       this.$router.push('/page2')
@@ -27,20 +31,17 @@ export default {
     }
   },
   mounted() {
-    // Global.listenPage({
-    //   time: 5,
-    //   onload: function() {
-    //     console.log('page1');
-    //   }
-    // })
-    // reload({href: window.location.href, time: 1000}).change({
-    //   onload() {
-    //     console.log('this is a page1 onload function')
-    //   },
-    //   onclose() {
-    //     console.log('this is a page1 onclose function')
-    //   }
-    // }).focus().blur()
+    let vm = this
+    reload({href: window.location.href, time: 100, showTip: true}).change({
+      onload() {
+        vm.$refs.audio.playMusic()
+        document.title = 'focus'
+      },
+      onclose() {
+        vm.$refs.audio.pauseMusic()
+        document.title = 'blur'
+      }
+    }).focus().blur()
     // const isType = type => target => `[object ${type}]` === Object.prototype.toString.call(target)
     // console.log(isType('Array')([]));
     // const calculate = (total, currentVal) => {
