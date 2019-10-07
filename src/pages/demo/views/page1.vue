@@ -17,7 +17,13 @@ export default {
   },
   methods: {
     goPage() {
-      this.$router.push('/page2')
+      // this.$router.push('/page2')
+      this.$router.go({ // 实现刷新当前路由而不刷新页面
+        path: this.$router.path,
+        query: {
+          d: + new Date()
+        }
+      })
     },
     simuTimer() {
       function timer() {
