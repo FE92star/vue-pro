@@ -155,13 +155,14 @@ export default {
     //   ]
     // })
     // this.$toast.show('')
-    // setTimeout(() => {
-    //   this.$toast.show({
-    //     message: '数据请求失败',
-    //     position: 'top',
-    //     type: 'warning'
-    //   })
-    // }, 5000)
+    setTimeout(() => {
+      // this.$toast.show({
+      //   message: '数据请求失败',
+      //   position: 'top',
+      //   type: 'warning'
+      // })
+      this.$toast.show('cool')
+    }, 5000)
     // this.$dialog.confirm({
     //   animate: 'bounce',
     //   title: '请先解锁',
