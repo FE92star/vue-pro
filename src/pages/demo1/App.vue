@@ -8,6 +8,9 @@
     <div class="empty"></div>
     <!-- 两个盒子用于都是合成层，但是top盒子通过初始化的盒子面积更小，而transform的scale可以直接在GPU上进行，因此所占的内存空间会更小 -->
     <img src="//r.51gjj.com/act/release/img/20180518_licai_fuli_icon.png" alt="" ref="img">
+    <!-- <div class="empty"></div> -->
+    <!-- <img src="//r.51gjj.com/act/release/img/20180518_licai_fuli_icon.png" alt="" ref="img"> -->
+    <p class="line">line-height</p>
   </div>
 </template>
 
@@ -30,7 +33,7 @@ export default {
   }),
   methods: {
     scrollFn() {
-      document.addEventListener('scroll', throttleFn(function() {
+      document.addEventListener('scroll', debounceFn(function() {
         console.log(6666);
       }, 1000))
     },
@@ -54,6 +57,7 @@ export default {
       }
       return codeArr.join('')
     }
+    this.scrollFn()
   }
 }
 </script>
@@ -100,5 +104,9 @@ export default {
     width: 100%;
     min-height: 800px;
   }
+}
+.line {
+  width: 100%;
+  line-height: 200%;
 }
 </style>
