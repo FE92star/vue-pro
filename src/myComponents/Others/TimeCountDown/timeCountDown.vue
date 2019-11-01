@@ -31,10 +31,11 @@ export default {
         return new Date()
       }
     },
-    // 倒计时结束时间
+    // 倒计时结束时间,必须参数
     endTime: {
-      type: String,
-      default: 'Mon Nov 11 2019 23:59:59 GMT+0800 (中国标准时间)'
+      type: [Date, String],
+      default: 'Mon Nov 11 2019 23:59:59 GMT+0800 (中国标准时间)',
+      required: true
     },
     // 字体大小
     fontSize: {
