@@ -70,6 +70,8 @@ export default {
   z-index: -10;
   .submit_button {
     position: absolute;
+    left: 0;
+    top: 0;
     width: 0;
     height: 0;
   }
